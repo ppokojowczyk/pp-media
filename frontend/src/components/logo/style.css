@@ -1,0 +1,31 @@
+.App-logo {
+    pointer-events: none;
+    position: relative;
+    top: 10px;
+    left: 20px;
+    z-index: 100;
+}
+
+@keyframes App-logo-spin {
+    0% {
+        transform: rotate(0deg) scaleX(1) scaleY(1);
+    }
+
+    25% {
+        transform: rotate(15deg) scaleX(0.9) scaleY(0.9);
+    }
+
+    50% {
+        transform: rotate(0deg) scaleX(0.8) scaleY(0.8);
+    }
+
+    75% {
+        transform: rotate(-15deg) scaleX(0.9) scaleY(0.9);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}

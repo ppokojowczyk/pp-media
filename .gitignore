@@ -1,0 +1,4 @@
+/.env
+/.vscode
+/mysql-data/
+/backend/cookie.txt

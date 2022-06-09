@@ -1,0 +1,144 @@
+movies:
+  path: /movies
+  controller: App\Controller\MediaController::medias
+  methods: GET
+  defaults:
+    mediaType: movie
+
+create_new_movie:
+  path: /movies
+  controller: App\Controller\MediaController::newMedia
+  methods: POST
+  defaults:
+    mediaType: movie
+
+update_movie:
+  path: /movies/{id}
+  controller: App\Controller\MediaController::updateMedia
+  methods: PUT
+  defaults:
+    mediaType: movie
+
+delete_movie:
+  path: /movies/{id}
+  controller: App\Controller\MediaController::deleteMedia
+  methods: DELETE
+  defaults:
+    mediaType: movie
+
+movies_genres:
+  path: /movies-genres
+  controller: App\Controller\GenresController::genres
+  methods: GET
+  defaults:
+    mediaType: movie
+
+games:
+  path: /games
+  controller: App\Controller\MediaController::medias
+  methods: GET
+  defaults:
+    mediaType: game
+
+create_new_game:
+  path: /games
+  controller: App\Controller\MediaController::newMedia
+  methods: POST
+  defaults:
+    mediaType: game
+
+update_game:
+  path: /games/{id}
+  controller: App\Controller\MediaController::updateMedia
+  methods: PUT
+  defaults:
+    mediaType: game
+
+delete_game:
+  path: /games/{id}
+  controller: App\Controller\MediaController::deleteMedia
+  methods: DELETE
+  defaults:
+    mediaType: game
+
+games_genres:
+  path: /games-genres
+  controller: App\Controller\GenresController::genres
+  methods: GET
+  defaults:
+    mediaType: game
+
+books:
+  path: /books
+  controller: App\Controller\MediaController::medias
+  methods: GET
+  defaults:
+    mediaType: book
+
+create_new_book:
+  path: /books
+  controller: App\Controller\MediaController::newMedia
+  methods: POST
+  defaults:
+    mediaType: book
+
+update_book:
+  path: /books/{id}
+  controller: App\Controller\MediaController::updateMedia
+  methods: PUT
+  defaults:
+    mediaType: book
+
+delete_book:
+  path: /books/{id}
+  controller: App\Controller\MediaController::deleteMedia
+  methods: DELETE
+  defaults:
+    mediaType: book
+
+books_genres:
+  path: /books-genres
+  controller: App\Controller\GenresController::genres
+  methods: GET
+  defaults:
+    mediaType: book
+
+albums:
+  path: /albums
+  controller: App\Controller\MediaController::medias
+  methods: GET
+  defaults:
+    mediaType: music
+
+create_new_album:
+  path: /albums
+  controller: App\Controller\MediaController::newMedia
+  methods: POST
+  defaults:
+    mediaType: music
+
+update_album:
+  path: /albums/{id}
+  controller: App\Controller\MediaController::updateMedia
+  methods: PUT
+  defaults:
+    mediaType: music
+
+delete_album:
+  path: /albums/{id}
+  controller: App\Controller\MediaController::deleteMedia
+  methods: DELETE
+  defaults:
+    mediaType: music
+
+albums_genres:
+  path: /albums-genres
+  controller: App\Controller\GenresController::genres
+  methods: GET
+  defaults:
+    mediaType: music
+
+imdb:
+  path: /imdb/{mediaId}
+  controller: App\Controller\MediaController::fetchDataFromImdb
+  methods: GET

@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+    database:
+        image: mariadb:10.3
+        volumes:
+            - ./assets/initial-db.sql:/docker-entrypoint-initdb.d/dump.sql
+            - ./mysql-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: pp_media
+            MYSQL_PASSWORD: root
+
+    backend:
+        build: ./backend
+        expose:
+            - ${BACKEND_PORT}
+        environment:
+            BACKEND_PORT: ${BACKEND_PORT}
+            DATABASE_URL: ${DATABASE_URL}
+            APP_SECRET: ${APP_SECRET}
+        ports:
+            - ${BACKEND_PORT}:80
+        links:
+            - database
+        command: ./run-backend.sh
+        volumes:
+            - ./backend:/srv/app
+        depends_on:
+            - database
+
+    frontend:
+        build: ./frontend
+        environment:
+            - FRONTEND_PORT=${FRONTEND_PORT}
+            - API_PORT=${BACKEND_PORT}
+            - REACT_APP_API_URL=${FRONTEND_API_URL}
+        expose:
+            - ${FRONTEND_PORT}
+        ports:
+            - ${FRONTEND_PORT}:3000
+        links:
+            - backend
+        stdin_open: true
+        tty: true
+        command: >
+            bash -c "npm ci &&
+                npm start"
+        volumes:
+            - ./frontend/:/srv/app/
+        depends_on:
+            - database
+            - backend
