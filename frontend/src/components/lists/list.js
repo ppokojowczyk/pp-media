@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { dataSource } from "../../utils/data-source.js";
-import Axios from "axios";
 import Grid from "../grid";
 import GridImdb from "../../utils/grid-imdb";
 
 const List = ({
   storeUrl = "",
-  genresUrl = "",
+  genres = [],
   className = "",
   withImdb = false,
   columns = [],
 }) => {
-  const [genresDictionary, setGenresDictionary] = useState([]);
+  const [genresDictionary] = useState(genres);
   const [gridInstance, setGridInstance] = useState(null);
 
   const createDataSource = () => {
@@ -38,14 +37,8 @@ const List = ({
     e.data.completed = false;
   };
 
-  const gridReady = (e, data) => {};
-
   const onGridInitialized = (e) => {
-    Axios.get(genresUrl).then((data) => {
-      setGenresDictionary(data.data);
-      gridReady(e, data);
-      setGridInstance(e);
-    });
+    setGridInstance(e);
   };
 
   const onToolbarPreparing = (e) => {

@@ -7,24 +7,26 @@ import Axios from "axios";
 const ListWrapper = ({ mediaType = "", className = "" }) => {
   const [columns, setColumns] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    if (!loaded) {
+    Axios.get(getGenresStoreUrl(mediaType)).then(({ data: genres }) => {
+      setGenres(genres);
+      setColumns(makeListColumns(mediaType, genres));
       setLoaded(true);
-      Axios.get(getGenresStoreUrl(mediaType)).then((data) => {
-        setColumns(makeListColumns(mediaType, data.data));
-      });
-    }
-  }, [loaded, mediaType]);
+    });
+  }, []);
 
   return (
-    <List
-      storeUrl={getMediaStoreUrl(mediaType)}
-      genresUrl={getGenresStoreUrl(mediaType)}
-      columns={columns}
-      withImdb={true}
-      className={className}
-    />
+    loaded && (
+      <List
+        storeUrl={getMediaStoreUrl(mediaType)}
+        genres={genres}
+        columns={columns}
+        withImdb
+        className={className}
+      />
+    )
   );
 };
 
