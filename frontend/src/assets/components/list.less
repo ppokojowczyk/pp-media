@@ -1,0 +1,35 @@
+.list {
+  &-panel {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  &-wrapper {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  &-header-cell,
+  &-body-cell {
+    color: #ccc;
+    border: 1px solid #555;
+    padding: 5px;
+  }
+
+  &-body {
+    &-row {
+      &:hover {
+        background: #222;
+      }
+    }
+
+    &-cell {
+      .input-check {
+        border: none;
+      }
+    }
+  }
+}

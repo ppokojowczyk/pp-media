@@ -1,0 +1,422 @@
+.button {
+  padding: 5px 10px;
+  font-weight: bold;
+  border: none;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background-color 200ms ease-in-out, color 500ms ease-in-out;
+  background-color: #ccc;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  color: #ccc;
+}
+.button + .button {
+  margin-left: 5px;
+}
+.button:hover {
+  background-color: #fff;
+  cursor: pointer;
+  color: #333;
+}
+.input {
+  border: 1px solid #ccc;
+  background-color: transparent;
+  padding: 5px 10px;
+  font-size: 1em;
+  color: #ccc;
+  margin-left: 5px;
+  border-radius: 5px;
+}
+.input.input-check {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 1px solid white;
+  cursor: pointer;
+  font-family: monospace;
+  padding: 0;
+  text-align: center;
+  font-size: 2em;
+  line-height: 24px;
+  color: transparent;
+}
+.input.input-check--active {
+  color: white;
+}
+.confirm {
+  position: fixed;
+  top: 1em;
+  background: white;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 2;
+  padding: 1em;
+  width: 50%;
+  border-radius: 4px;
+}
+.confirm-buttons {
+  margin-top: 1em;
+  text-align: right;
+}
+.edit .buttons {
+  text-align: right;
+}
+.edit-container {
+  z-index: 100;
+  position: fixed;
+  top: 5%;
+  left: 25%;
+  width: 50%;
+  background: black;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+.edit-field {
+  width: 100%;
+  float: left;
+  margin-bottom: 5px;
+}
+.edit form fieldset {
+  border: none;
+  color: #fff;
+  margin: 20px;
+}
+.edit input {
+  width: calc(100% - 20px);
+  border: 1px solid #888;
+  background: none;
+  color: #fff;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  margin: 0 0 5px;
+}
+.edit label {
+  font-style: italic;
+  font-family: monospace;
+  text-transform: uppercase;
+  margin-left: 10px;
+  border: 1px solid #888;
+  padding: 2px 10px 0;
+  /* font-size:0.8em; */
+  /* border-bottom: none; */
+  background: #888;
+  color: #000;
+  margin-bottom: 1px;
+  position: relative;
+  /* margin-top: -5px; */
+  padding-bottom: 1px;
+  /* display: inline-block; */
+}
+.edit .input.input-textarea {
+  width: calc(100% - 20px);
+  margin: 0;
+  height: 95px;
+}
+.edit .input.input-check {
+  margin: 10px;
+}
+.edit .input-select-item {
+  display: inline-block;
+  margin: 1px;
+  padding: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 200ms;
+  color: #444;
+}
+.edit .input-select-item--active {
+  background: white;
+  color: black;
+}
+.list-panel {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.list-wrapper {
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 100%;
+}
+.list-header-cell,
+.list-body-cell {
+  color: #ccc;
+  border: 1px solid #555;
+  padding: 5px;
+}
+.list-body-row:hover {
+  background: #222;
+}
+.list-body-cell .input-check {
+  border: none;
+}
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+  color: "violet";
+  background-repeat: repeat;
+  padding-bottom: 10px;
+}
+.App-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); */
+}
+.App-header {
+  min-height: 80px;
+  /* background: #2A2A2A; */
+  /* border-bottom: 1px dotted #4D4D4D; */
+  position: relative;
+}
+.App-header-title {
+  color: #FFF;
+  position: absolute;
+  top: 15px;
+  left: 100px;
+  z-index: 1;
+  font-size: 2.5em;
+}
+.App-content {
+  /* height: calc(100% - 81px);
+  overflow: hidden; */
+}
+.App-link {
+  color: #61dafb;
+}
+.link {
+  color: #36E;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px dotted #36E;
+}
+.dx-datagrid-header-panel .dx-toolbar {
+  margin: 0 !important;
+  padding: 5px !important;
+}
+.dx-link {
+  color: #9F6BAB !important;
+  text-shadow: 1px 1px 1px #000;
+  text-decoration: none !important;
+  transition: color 500ms;
+}
+.App,
+body,
+html,
+#root,
+.App-wrapper {
+  /* height: 100%; */
+}
+.dx-datagrid .dx-checkbox--favourite .dx-checkbox.dx-state-readonly .dx-checkbox-icon,
+.dx-datagrid .dx-checkbox--to-watch .dx-checkbox.dx-state-readonly .dx-checkbox-icon,
+.dx-datagrid .dx-checkbox--completed .dx-checkbox.dx-state-readonly .dx-checkbox-icon,
+.dx-datagrid .dx-checkbox--to-listen .dx-checkbox.dx-state-readonly .dx-checkbox-icon,
+.dx-datagrid .dx-checkbox--to-buy .dx-checkbox.dx-state-readonly .dx-checkbox-icon {
+  background: none;
+}
+.dx-checkbox--to-watch .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
+.dx-checkbox--to-watch .dx-checkbox .dx-checkbox-icon,
+.dx-checkbox--favourite .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
+.dx-checkbox--favourite .dx-checkbox .dx-checkbox-icon,
+.dx-checkbox--completed .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
+.dx-checkbox--completed .dx-checkbox .dx-checkbox-icon,
+.dx-checkbox--to-listen .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
+.dx-checkbox--to-listen .dx-checkbox .dx-checkbox-icon,
+.dx-checkbox--to-buy .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon,
+.dx-checkbox--to-buy .dx-checkbox .dx-checkbox-icon {
+  border: none;
+  font-size: 20px;
+}
+.checkbox {
+  /* width: 0;
+  height: 0;
+  border: none; */
+}
+.checkbox:before {
+  content: "123";
+  opacity: 1;
+  color: red;
+  background: yellow;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+}
+/* .checkbox::after {
+  content: "\2764";
+  color: #333;
+  color: yellow;
+  background: red;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: inline-block;
+} */
+.dx-checkbox--favourite .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon:before {
+  color: #9F6BAB;
+}
+.dx-checkbox--to-watch .dx-checkbox .dx-checkbox-icon:before {
+  content: "\2666";
+  color: #333;
+}
+.dx-checkbox--to-watch .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon:before {
+  color: #5db6f1;
+}
+.dx-checkbox--completed .dx-checkbox .dx-checkbox-icon:before {
+  content: "\2714";
+  color: #333;
+}
+.dx-checkbox--completed .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon:before {
+  color: #22ee33;
+}
+.dx-checkbox--to-listen .dx-checkbox .dx-checkbox-icon:before {
+  content: "\2714";
+  color: #333;
+}
+.dx-checkbox--to-listen .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon:before {
+  color: #5db6f1;
+}
+.dx-checkbox--to-buy .dx-checkbox .dx-checkbox-icon:before {
+  content: "\2714";
+  color: #333;
+}
+.dx-checkbox--to-buy .dx-checkbox.dx-checkbox-checked .dx-checkbox-icon:before {
+  color: #5db6f1;
+}
+.App-menu {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+.App-menu .dx-button {
+  margin-left: 5px;
+}
+.App-menu .button {
+  padding: 5px 20px;
+}
+.App-menu .button-active {
+  border-left: 10px solid #fff;
+  padding-left: 10px;
+}
+.App-menu .button-active .dx-button-content {
+  padding-left: 8px;
+}
+.App-menu .button-active.button-movies {
+  border-left-color: #4a83f7;
+}
+.App-menu .button-active.button-games {
+  border-left-color: #4afc80;
+}
+.App-menu .button-active.button-books {
+  border-left-color: #fa4aa1;
+}
+.App-menu .button-active.button-albums {
+  border-left-color: #eef128;
+}
+.movies-list .dx-datagrid .dx-link {
+  color: #4a83f7 !important;
+}
+.games-list .dx-datagrid .dx-link {
+  color: #4afc80 !important;
+}
+.books-list .dx-datagrid .dx-link {
+  color: #fa4aa1 !important;
+}
+.albums-list .dx-datagrid .dx-link {
+  color: #eef128 !important;
+}
+.dx-datagrid .dx-link:hover {
+  transition: color 100ms;
+  padding-bottom: 1px;
+  color: #FFF !important;
+}
+.dx-data-row {
+  transition: background 1000ms;
+}
+.dx-data-row:hover {
+  transition: background 100ms;
+  background: #3e3e3e;
+  cursor: pointer;
+}
+.dx-button.imdb-button {
+  -webkit-animation: fade-in 250ms;
+  -moz-animation: fade-in 250ms;
+  -ms-animation: fade-in 250ms;
+  -o-animation: fade-in 250ms;
+  animation: fade-in 250ms;
+}
+.dx-button.imdb-button,
+.dx-button.imdb-button:hover {
+  background-color: #E2B616;
+}
+.dx-button.imdb-button:hover {
+  background-color: #F4D838;
+}
+.dx-button.imdb-button .dx-icon,
+.dx-button.imdb-button .dx-button-text {
+  color: #222;
+}
+.dx-button.imdb-button .dx-button-text {
+  font-weight: bold;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.list-link + .list-link {
+  margin-left: 5px;
+}
+.list-link,
+.list-link:visited {
+  color: grey;
+  text-decoration: none;
+}
+.list-link:hover {
+  color: white;
+}
+.item-title {
+  font-style: italic;
+  font-size: 1.2em;
+  color: #fff !important;
+  text-shadow: 0 0 1px #fff !important;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
