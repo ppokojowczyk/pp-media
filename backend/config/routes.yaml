@@ -1,5 +1,5 @@
 movies:
-  path: /movies
+  path: /movies/{id?}
   controller: App\Controller\MediaController::medias
   methods: GET
   defaults:
@@ -34,7 +34,7 @@ movies_genres:
     mediaType: movie
 
 games:
-  path: /games
+  path: /games/{id?}
   controller: App\Controller\MediaController::medias
   methods: GET
   defaults:
@@ -69,7 +69,7 @@ games_genres:
     mediaType: game
 
 books:
-  path: /books
+  path: /books/{id?}
   controller: App\Controller\MediaController::medias
   methods: GET
   defaults:
@@ -104,7 +104,7 @@ books_genres:
     mediaType: book
 
 albums:
-  path: /albums
+  path: /albums/{id?}
   controller: App\Controller\MediaController::medias
   methods: GET
   defaults:

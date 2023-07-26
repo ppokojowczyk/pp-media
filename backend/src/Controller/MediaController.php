@@ -27,10 +27,10 @@ class MediaController extends AbstractController
         return $this->Factory->makeMediaClass($mediaType);
     }
 
-    public function medias(string $mediaType = ''): JsonResponse
+    public function medias(string $mediaType = '', $id = ''): JsonResponse
     {
         $Repository = $this->Factory->makeMediaRepository($mediaType);
-        $data = $Repository->findAll();
+        $data = !empty($id) ? [$Repository->find($id)] : $Repository->findAll();
         return $this->json(['data' => $data, 'totalCount' => count($data)]);
     }
 
