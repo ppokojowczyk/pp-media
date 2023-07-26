@@ -1,6 +1,6 @@
 import React from "react";
-import { render } from "react-dom";
-import { TagBox } from "devextreme-react";
+import { formatDate } from "./helpers";
+import Check from "../components/check";
 
 const idColumn = {
   caption: "ID",
@@ -26,12 +26,14 @@ const numberColumn = {
   formItem: {
     visible: false,
   },
+  alignment: 'center',
 };
 
 const titleColumn = {
   caption: "Title",
   dataField: "title",
   validationRules: [{ type: "required" }],
+  className: "item-title",
 };
 
 const releaseDateColumn = {
@@ -40,6 +42,10 @@ const releaseDateColumn = {
   dataType: "date",
   format: "yyyy-MM-dd",
   width: 100,
+  alignment: 'center',
+  content: (column, data, value) => {
+    return formatDate(value);
+  }
 };
 
 const descriptionColumn = {
@@ -54,11 +60,13 @@ const genresColumn = (genresDictionary = []) => {
   return {
     caption: "Genre(s)",
     dataField: "genres",
-    cellTemplate: (c, e) => {
-      /** @todo this can be done better */
+    fieldType: "select",
+    data: genresDictionary,
+    content: (c, e, v) => {
       let text = "";
-      if (e.value !== undefined && e.value !== null && e.value.length) {
-        e.value.forEach((genre) => {
+
+      if (v !== undefined && v !== null && v) {
+        v.forEach((genre) => {
           let _text = genre;
           genresDictionary.forEach((_genre) => {
             if (_genre.name === genre) {
@@ -69,31 +77,8 @@ const genresColumn = (genresDictionary = []) => {
           text += (text ? " \u2022 " : "") + _text;
         });
       }
-      c.append(text);
-    },
-    editCellTemplate: (c, e) => {
-      /** @todo this should be moved as separate component/function */
-      const val = [];
-      e.value &&
-        e.value.length &&
-        e.value.forEach((genre) => {
-          val.push(genre);
-        });
-      render(
-        <TagBox
-          dataSource={genresDictionary}
-          valueExpr="name"
-          displayExpr="display"
-          showSelectionControls={true}
-          onInitialized={(a) => {
-            a.component.option("value", val);
-          }}
-          onValueChanged={(a) => {
-            e.setValue(a.value || []);
-          }}
-        />,
-        c
-      );
+
+      return text;
     },
   };
 };
@@ -121,6 +106,10 @@ const favouriteColumn = {
     cssClass: "dx-checkbox--favourite",
   },
   cssClass: "dx-checkbox--favourite",
+  content: (column, data, value) => {
+    return <Check value={value === true} />
+  },
+  alignment: 'center',
 };
 
 const saveWithoutValidationColumn = {
@@ -140,6 +129,10 @@ const buyColumn = {
     cssClass: "dx-checkbox--to-buy",
   },
   cssClass: "dx-checkbox--to-buy",
+  content: (column, data, value) => {
+    return <Check value={value === true} />
+  },
+  alignment: 'center',
 };
 
 const authorColumn = {
@@ -161,6 +154,10 @@ const listenColumn = {
     cssClass: "dx-checkbox--to-listen",
   },
   cssClass: "dx-checkbox--to-listen",
+  content: (column, data, value) => {
+    return <Check value={value === true} />
+  },
+  alignment: 'center',
 };
 
 const readColumn = {
@@ -172,6 +169,10 @@ const readColumn = {
     cssClass: "dx-checkbox--to-watch",
   },
   cssClass: "dx-checkbox--to-watch",
+  content: (column, data, value) => {
+    return <Check value={value === true} />
+  },
+  alignment: 'center',
 };
 
 const playColumn = {
@@ -183,6 +184,10 @@ const playColumn = {
     cssClass: "dx-checkbox--to-watch",
   },
   cssClass: "dx-checkbox--to-watch",
+  content: (column, data, value) => {
+    return <Check value={value === true} />
+  },
+  alignment: 'center',
 };
 
 const completedColumn = {
@@ -194,6 +199,10 @@ const completedColumn = {
     cssClass: "dx-checkbox--completed",
   },
   cssClass: "dx-checkbox--completed",
+  content: (column, data, value) => {
+    return <Check value={value === true} />
+  },
+  alignment: 'center',
 };
 
 const watchColumn = {
@@ -205,6 +214,26 @@ const watchColumn = {
     cssClass: "dx-checkbox--to-watch",
   },
   cssClass: "dx-checkbox--to-watch",
+  content: (column, data, value) => {
+    return <Check value={value === true} />
+  },
+  alignment: 'center',
+};
+
+const optionsColumn = (handleEdit, handleDelete) => {
+  return {
+    caption: "Options",
+    alignment: 'center',
+    allowEditing: false,
+    content: (column, data) => {
+      return (
+        [
+          <a className="list-link" href="#" onClick={() => handleEdit(data.id)}>Edit</a>,
+          <a className="list-link" href="#" onClick={() => handleDelete(data.id)}>Delete</a>
+        ]
+      );
+    }
+  };
 };
 
 export {
@@ -224,4 +253,5 @@ export {
   playColumn,
   completedColumn,
   watchColumn,
+  optionsColumn,
 };

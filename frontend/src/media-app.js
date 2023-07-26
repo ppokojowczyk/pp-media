@@ -1,5 +1,6 @@
 import React from "react";
 import "./assets/style.css";
+import "./assets/components.css";
 import Menu from "./components/menu";
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.dark.css";

@@ -8,6 +8,7 @@ import {
   idColumn,
   listenColumn,
   numberColumn,
+  optionsColumn,
   playColumn,
   ratingColumn,
   readColumn,
@@ -18,7 +19,7 @@ import {
 } from "./columns";
 import { ALBUMS_TYPE, BOOKS_TYPE, GAMES_TYPE, MOVIES_TYPE } from "./constants";
 
-const makeListColumns = (mediaType = "", genresDictionary) => {
+const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDelete) => {
   return [
     idColumn,
     numberColumn,
@@ -36,6 +37,7 @@ const makeListColumns = (mediaType = "", genresDictionary) => {
     mediaType === GAMES_TYPE && completedColumn,
     mediaType === BOOKS_TYPE && readColumn,
     mediaType === ALBUMS_TYPE && listenColumn,
+    optionsColumn(handleEdit, handleDelete),
   ].filter((column) => {
     return column;
   });

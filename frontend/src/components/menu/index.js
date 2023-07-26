@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "devextreme-react";
+import Button from "../button";
 import { withRouter } from "react-router-dom";
 
 const Menu = ({ history }) => {
