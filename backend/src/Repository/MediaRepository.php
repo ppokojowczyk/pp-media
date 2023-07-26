@@ -3,10 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\MediaInterface;
-use App\Entity\Movie;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method MediaInterface|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,14 +14,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 class MediaRepository extends EntityRepository
 {
     const MAX_RESULTS = 1000;
-
-    private $mediaClass = '';
-
-    public function setMediaClass(string $mediaClass = '')
-    {
-        $this->mediaClass = $mediaClass;
-        return $this;
-    }
 
     // public function __construct(string $mediaClass = '')
     // {
@@ -38,7 +27,7 @@ class MediaRepository extends EntityRepository
     public function findAll()
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT m FROM ' . $this->getEntityName() . ' m ORDER BY m.id ASC')
+            ->createQuery(sprintf('SELECT m FROM %s m ORDER BY m.id ASC', $this->getEntityName()))
             ->getResult();
         // return $this->createQueryBuilder('m')
         //     ->orderBy('m.id', 'DESC')
