@@ -46,8 +46,10 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
                         height: 0,
                         border: 'none'
                     }} />
-                    <Button text="Save" type="submit" />
-                    <Button text="Cancel" onClick={cancel} />
+                    <div className="buttons">
+                        <Button text="Save" type="submit" />
+                        <Button text="Cancel" onClick={cancel} />
+                    </div>
                 </fieldset>
             </form>
         </div>

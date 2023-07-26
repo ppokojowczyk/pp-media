@@ -140,3 +140,21 @@
 .list-body-cell .input-check {
     border: none;
 }
+
+.confirm {
+    position: fixed;
+    top: 1em;
+    background: white;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 2;
+    padding: 1em;
+    width: 50%;
+    border-radius: 4px;
+}
+
+.confirm-buttons {
+    margin-top: 1em;
+    text-align: right;
+}

@@ -5,6 +5,7 @@ import Axios from "axios";
 import ListNew from "./list-new";
 import { dataSource } from "../../utils/data-source";
 import Edit from "../edit";
+import { confirm } from "../../utils/helpers";
 
 const ListWrapper = ({ mediaType = "", className = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -42,7 +43,25 @@ const ListWrapper = ({ mediaType = "", className = "" }) => {
       }) : callback({});
   }
 
-  const handleDelete = () => {
+  const handleDelete = (id) => {
+    confirm({
+      text: `Delete entry ${id}?`,
+      callback: (result) => {
+        return (result === true)
+          ? repository._store.remove(id).then(() => {
+            refresh();
+            return Promise.resolve(result);
+          })
+          : Promise.resolve(result);
+      },
+    });
+  }
+
+  const refresh = () => {
+    setRefreshList(true);
+    setTimeout(() => {
+      setRefreshList(false);
+    }, 1);
   }
 
   const handleSave = (data) => {
@@ -56,10 +75,7 @@ const ListWrapper = ({ mediaType = "", className = "" }) => {
     func()
       .then(() => {
         closeEdit();
-        setRefreshList(true);
-        setTimeout(() => {
-          setRefreshList(false);
-        }, 1);
+        refresh();
       }).catch((err) => {
         alert(err.toString());
       })
@@ -87,7 +103,7 @@ const ListWrapper = ({ mediaType = "", className = "" }) => {
             extraClass={className}
             refresh={refreshList}
             addNew={() => {
-              handleEdit({});
+              handleEdit(null);
             }}
           />
         )}
