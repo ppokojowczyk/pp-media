@@ -21,4 +21,5 @@ class BooksGenres
     const FAMILY = "FAMILY";
     const ANIMATION = "ANIMATION";
     const ROMANCE = "ROMANCE";
+    const COMPUTER_SCIENCE = "COMPUTER_SCIENCE";
 }

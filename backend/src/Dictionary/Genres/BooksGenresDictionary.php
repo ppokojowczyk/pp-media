@@ -23,6 +23,7 @@ class BooksGenresDictionary extends GenresDictionaryAbstract
         BooksGenres::ROMANCE => "Romance",
         BooksGenres::SCI_FI => "Sci-Fi",
         BooksGenres::THRILLER => "Thriller",
-        BooksGenres::WAR => "War"
+        BooksGenres::WAR => "War",
+        BooksGenres::COMPUTER_SCIENCE => "Computer Science",
     ];
 }
