@@ -31,7 +31,6 @@ const List = ({
     e.data.ignoreValidation = false;
     e.data.toWatch = false;
     e.data.toPlay = false;
-    e.data.toRead = false;
     e.data.toBuy = false;
     e.data.toListen = false;
     e.data.completed = false;

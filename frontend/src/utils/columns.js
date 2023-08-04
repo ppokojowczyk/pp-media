@@ -167,21 +167,6 @@ const listenColumn = {
   alignment: 'center',
 };
 
-const readColumn = {
-  caption: "To Read",
-  dataField: "toRead",
-  dataType: "boolean",
-  width: 100,
-  editorOptions: {
-    cssClass: "dx-checkbox--to-watch",
-  },
-  cssClass: "dx-checkbox--to-watch",
-  content: (column, data, value) => {
-    return <Check value={value === true} />
-  },
-  alignment: 'center',
-};
-
 const playColumn = {
   caption: "To Play",
   dataField: "toPlay",
@@ -272,7 +257,6 @@ export {
   ownColumn,
   authorColumn,
   listenColumn,
-  readColumn,
   playColumn,
   completedColumn,
   watchColumn,

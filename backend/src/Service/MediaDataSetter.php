@@ -24,7 +24,6 @@ class MediaDataSetter
             'ignoreValidation',
             'toWatch',
             'author',
-            'toRead',
             'toPlay',
             'completed',
             "own",

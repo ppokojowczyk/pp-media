@@ -22,24 +22,9 @@ class Book extends Media
      */
     protected $author;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $to_read;
-
     public function getGenreClass(): string
     {
         return BookGenre::class;
-    }
-
-    public function setToRead($value)
-    {
-        $this->to_read = $value;
-    }
-
-    public function getToRead()
-    {
-        return $this->to_read;
     }
 
     public function setAuthor($author)
