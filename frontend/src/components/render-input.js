@@ -55,8 +55,8 @@ const renderInput = ({
             type="number"
             step={1}
             value={value}
-            min={0}
-            max={10}
+            min={field.min}
+            max={field.max}
         />
     }
 
