@@ -135,6 +135,17 @@ const buyColumn = {
   alignment: 'center',
 };
 
+const ownColumn = {
+  caption: "Own",
+  dataField: "own",
+  dataType: "boolean",
+  width: 100,
+  content: (column, data, value) => {
+    return <Check value={value === true} />
+  },
+  alignment: 'center',
+}
+
 const authorColumn = {
   caption: "Author",
   dataField: "author",
@@ -220,6 +231,14 @@ const watchColumn = {
   alignment: 'center',
 };
 
+const priceColumn = {
+  caption: "Price",
+  dataField: "price",
+  dataType: "number",
+  width: 100,
+  visible: false,
+}
+
 const optionsColumn = (handleEdit, handleDelete) => {
   return {
     caption: "Options",
@@ -247,11 +266,13 @@ export {
   favouriteColumn,
   saveWithoutValidationColumn,
   buyColumn,
+  ownColumn,
   authorColumn,
   listenColumn,
   readColumn,
   playColumn,
   completedColumn,
   watchColumn,
+  priceColumn,
   optionsColumn,
 };

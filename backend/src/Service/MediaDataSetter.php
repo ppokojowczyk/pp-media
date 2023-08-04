@@ -27,6 +27,8 @@ class MediaDataSetter
             'toRead',
             'toPlay',
             'completed',
+            "own",
+            "price",
         ];
     }
 

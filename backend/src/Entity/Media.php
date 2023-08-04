@@ -55,6 +55,16 @@ abstract class Media implements MediaInterface, TimestampInterface
      */
     protected $toBuy;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $own;
+
+    /**
+     * @ORM\Column(type="decimal", options={"scale"=2, "precision"=10})
+     */
+    protected $price;
+
     protected $ignore_validation;
 
     public function getId()
@@ -185,6 +195,32 @@ abstract class Media implements MediaInterface, TimestampInterface
     public function getIgnoreValidation()
     {
         return $this->ignore_validation;
+    }
+
+    public function setPrice($price): void
+    {
+        $this->price = $price;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param bool $own
+     */
+    public function setOwn(bool $own): void
+    {
+        $this->own = $own;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getOwn(): bool
+    {
+        return $this->own;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
