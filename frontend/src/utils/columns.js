@@ -227,6 +227,12 @@ const remarksColumn = {
   visible: false,
 };
 
+const languageColumn = {
+  caption: "Language",
+  dataField: "language",
+  visible: false,
+};
+
 const optionsColumn = (handleEdit, handleDelete) => {
   return {
     caption: "Options",
@@ -262,5 +268,6 @@ export {
   watchColumn,
   priceColumn,
   optionsColumn,
+  languageColumn,
   remarksColumn,
 };

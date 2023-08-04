@@ -70,6 +70,11 @@ abstract class Media implements MediaInterface, TimestampInterface
      */
     protected $price;
 
+    /**
+     * @ORM\Column(type="string", length=2, nullable=true)
+     */
+    protected $language;
+
     protected $ignore_validation;
 
     public function getId()
@@ -236,6 +241,16 @@ abstract class Media implements MediaInterface, TimestampInterface
     public function getRemarks()
     {
         return $this->remarks;
+    }
+
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    public function getLanguage()
+    {
+        return $this->language;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)

@@ -29,6 +29,7 @@ class MediaDataSetter
             "own",
             "price",
             "remarks",
+            "language",
         ];
     }
 
