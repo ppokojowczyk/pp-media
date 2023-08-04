@@ -61,6 +61,11 @@ abstract class Media implements MediaInterface, TimestampInterface
     protected $own;
 
     /**
+     * @ORM\Column(type="string", length=1000)
+     */
+    protected $remarks;
+
+    /**
      * @ORM\Column(type="decimal", options={"scale"=2, "precision"=10})
      */
     protected $price;
@@ -221,6 +226,16 @@ abstract class Media implements MediaInterface, TimestampInterface
     public function getOwn(): bool
     {
         return $this->own;
+    }
+
+    public function setRemarks($remarks)
+    {
+        $this->remarks = $remarks;
+    }
+
+    public function getRemarks()
+    {
+        return $this->remarks;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)

@@ -15,6 +15,7 @@ import {
   ratingColumn,
   readColumn,
   releaseDateColumn,
+  remarksColumn,
   saveWithoutValidationColumn,
   titleColumn,
   watchColumn,
@@ -41,6 +42,7 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     mediaType === BOOKS_TYPE && readColumn,
     mediaType === ALBUMS_TYPE && listenColumn,
     priceColumn,
+    remarksColumn,
     optionsColumn(handleEdit, handleDelete),
   ].filter((column) => {
     return column;

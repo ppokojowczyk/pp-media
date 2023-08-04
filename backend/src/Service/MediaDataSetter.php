@@ -29,6 +29,7 @@ class MediaDataSetter
             'completed',
             "own",
             "price",
+            "remarks",
         ];
     }
 
