@@ -23,11 +23,6 @@ class Game extends Media
     protected $to_play;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $completed;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $developer;
@@ -45,16 +40,6 @@ class Game extends Media
     public function getToPlay()
     {
         return $this->to_play;
-    }
-
-    public function setCompleted($value)
-    {
-        $this->completed = $value;
-    }
-
-    public function getCompleted()
-    {
-        return $this->completed;
     }
 
     public function setDeveloper($developer)

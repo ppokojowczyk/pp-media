@@ -75,6 +75,11 @@ abstract class Media implements MediaInterface, TimestampInterface
      */
     protected $publisher;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $completed;
+
     protected $ignore_validation;
 
     public function getId()
@@ -245,6 +250,16 @@ abstract class Media implements MediaInterface, TimestampInterface
     public function getPublisher()
     {
         return $this->publisher;
+    }
+
+    public function setCompleted($completed)
+    {
+        $this->completed = $completed;
+    }
+
+    public function getCompleted()
+    {
+        return $this->completed;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)

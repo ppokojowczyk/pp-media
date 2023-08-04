@@ -41,7 +41,7 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     ownColumn,
     mediaType === MOVIES_TYPE && watchColumn,
     mediaType === GAMES_TYPE && playColumn,
-    mediaType === GAMES_TYPE && completedColumn,
+    completedColumn,
     mediaType === ALBUMS_TYPE && listenColumn,
     priceColumn,
     remarksColumn,
