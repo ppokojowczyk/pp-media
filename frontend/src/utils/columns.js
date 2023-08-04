@@ -89,12 +89,8 @@ const ratingColumn = {
   dataType: "number",
   width: 100,
   alignment: "center",
-  editorOptions: {
-    min: 0,
-    max: 10,
-    showSpinControls: true,
-    showSpinButtons: true,
-  },
+  min: 0,
+  max: 10,
 };
 
 const favouriteColumn = {
