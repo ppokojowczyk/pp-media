@@ -11,7 +11,7 @@ use Incompass\TimestampableBundle\Entity\TimestampTrait;
 class Game extends Media
 {
     use TimestampTrait;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\GameGenre", mappedBy="game", orphanRemoval=true, cascade="persist")
      */
@@ -26,6 +26,11 @@ class Game extends Media
      * @ORM\Column(type="boolean")
      */
     protected $completed;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $developer;
 
     public function getGenreClass(): string
     {
@@ -50,5 +55,15 @@ class Game extends Media
     public function getCompleted()
     {
         return $this->completed;
+    }
+
+    public function setDeveloper($developer)
+    {
+        $this->developer = $developer;
+    }
+
+    public function getDeveloper()
+    {
+        return $this->developer;
     }
 }

@@ -218,6 +218,18 @@ const languageColumn = {
   visible: false,
 };
 
+const publisherColumn = {
+  caption: "Publisher",
+  dataField: "publisher",
+  visible: false,
+};
+
+const developerColumn = {
+  caption: "Developer",
+  dataField: "developer",
+  visible: false,
+};
+
 const optionsColumn = (handleEdit, handleDelete) => {
   return {
     caption: "Options",
@@ -254,4 +266,6 @@ export {
   optionsColumn,
   languageColumn,
   remarksColumn,
+  publisherColumn,
+  developerColumn,
 };
