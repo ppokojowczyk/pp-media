@@ -116,21 +116,6 @@ const saveWithoutValidationColumn = {
   calculateCellValue: () => false,
 };
 
-const buyColumn = {
-  caption: "To Buy",
-  dataField: "toBuy",
-  dataType: "boolean",
-  width: 100,
-  editorOptions: {
-    cssClass: "dx-checkbox--to-buy",
-  },
-  cssClass: "dx-checkbox--to-buy",
-  content: (column, data, value) => {
-    return <Check value={value === true} />
-  },
-  alignment: 'center',
-};
-
 const ownColumn = {
   caption: "Own",
   dataField: "own",
@@ -259,7 +244,6 @@ export {
   ratingColumn,
   favouriteColumn,
   saveWithoutValidationColumn,
-  buyColumn,
   ownColumn,
   authorColumn,
   listenColumn,

@@ -1,6 +1,5 @@
 import {
   authorColumn,
-  buyColumn,
   completedColumn,
   descriptionColumn,
   favouriteColumn,
@@ -36,7 +35,6 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     favouriteColumn,
     saveWithoutValidationColumn,
     ownColumn,
-    buyColumn,
     mediaType === MOVIES_TYPE && watchColumn,
     mediaType === GAMES_TYPE && playColumn,
     mediaType === GAMES_TYPE && completedColumn,

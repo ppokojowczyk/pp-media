@@ -53,11 +53,6 @@ abstract class Media implements MediaInterface, TimestampInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $toBuy;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
     protected $own;
 
     /**
@@ -71,7 +66,7 @@ abstract class Media implements MediaInterface, TimestampInterface
     protected $price;
 
     /**
-     * @ORM\Column(type="string", length=2, nullable=true)
+     * @ORM\Column(type="string", length=2)
      */
     protected $language;
 
@@ -163,22 +158,6 @@ abstract class Media implements MediaInterface, TimestampInterface
     public function getIsFavourite()
     {
         return $this->is_favourite;
-    }
-
-    /**
-     * @param bool $toBuy
-     */
-    public function setToBuy(bool $toBuy): void
-    {
-        $this->toBuy = $toBuy;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getToBuy(): bool
-    {
-        return boolval($this->toBuy);
     }
 
     public function getReleaseYear()

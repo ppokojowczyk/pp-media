@@ -13,7 +13,6 @@ class MediaDataSetter
     protected function dataKeys(): array
     {
         return [
-            'toBuy',
             'title',
             'releaseDate',
             'rating',
