@@ -137,21 +137,6 @@ const authorColumn = {
   },
 };
 
-const listenColumn = {
-  caption: "To Listen",
-  dataField: "toListen",
-  dataType: "boolean",
-  width: 100,
-  editorOptions: {
-    cssClass: "dx-checkbox--to-listen",
-  },
-  cssClass: "dx-checkbox--to-listen",
-  content: (column, data, value) => {
-    return <Check value={value === true} />
-  },
-  alignment: 'center',
-};
-
 const playColumn = {
   caption: "To Play",
   dataField: "toPlay",
@@ -258,7 +243,6 @@ export {
   saveWithoutValidationColumn,
   ownColumn,
   authorColumn,
-  listenColumn,
   playColumn,
   completedColumn,
   watchColumn,

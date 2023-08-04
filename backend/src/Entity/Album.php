@@ -22,24 +22,9 @@ class Album extends Media
      */
     protected $author;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $to_listen;
-
     public function getGenreClass(): string
     {
         return AlbumGenre::class;
-    }
-
-    public function setToListen($value)
-    {
-        $this->to_listen = $value;
-    }
-
-    public function getToListen()
-    {
-        return $this->to_listen;
     }
 
     public function setAuthor($author)

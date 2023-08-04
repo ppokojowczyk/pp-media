@@ -18,7 +18,6 @@ class MediaDataSetter
             'rating',
             'genres',
             'description',
-            'toListen',
             'isFavourite',
             'ignoreValidation',
             'toWatch',
