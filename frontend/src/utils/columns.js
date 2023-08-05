@@ -215,6 +215,12 @@ const developerColumn = {
   visible: false,
 };
 
+const seriesColumn = {
+  caption: "Series",
+  dataField: "series",
+  visible: false,
+}
+
 const optionsColumn = (handleEdit, handleDelete) => {
   return {
     caption: "Options",
@@ -252,4 +258,5 @@ export {
   remarksColumn,
   publisherColumn,
   developerColumn,
+  seriesColumn,
 };

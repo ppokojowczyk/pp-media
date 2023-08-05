@@ -80,6 +80,11 @@ abstract class Media implements MediaInterface, TimestampInterface
      */
     protected $completed;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $series;
+
     protected $ignore_validation;
 
     public function getId()
@@ -260,6 +265,16 @@ abstract class Media implements MediaInterface, TimestampInterface
     public function getCompleted()
     {
         return $this->completed;
+    }
+
+    public function setSeries($series)
+    {
+        $this->series = $series;
+    }
+
+    public function getSeries()
+    {
+        return $this->series;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)

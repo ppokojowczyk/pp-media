@@ -17,6 +17,7 @@ import {
   releaseDateColumn,
   remarksColumn,
   saveWithoutValidationColumn,
+  seriesColumn,
   titleColumn,
   watchColumn,
 } from "./columns";
@@ -30,6 +31,7 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     (mediaType === BOOKS_TYPE || mediaType === ALBUMS_TYPE) && authorColumn,
     (mediaType === GAMES_TYPE) && developerColumn,
     publisherColumn,
+    seriesColumn,
     releaseDateColumn,
     descriptionColumn,
     genresColumn(genresDictionary),

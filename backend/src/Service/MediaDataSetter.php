@@ -30,6 +30,7 @@ class MediaDataSetter
             "language",
             "publisher",
             "developer",
+            "series",
         ];
     }
 
