@@ -152,6 +152,18 @@
 .list-body-cell .input-check {
   border: none;
 }
+.statistics {
+  margin: 1em;
+}
+.statistics > div {
+  color: #fff;
+  font-size: 2em;
+  font-weight: 100;
+  border-bottom: 1px solid #aaa;
+}
+.statistics > div span {
+  font-weight: bold;
+}
 .App {
   background-color: #282c34;
   min-height: 100vh;

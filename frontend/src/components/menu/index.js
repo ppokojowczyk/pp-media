@@ -28,6 +28,12 @@ const Menu = ({ history }) => {
       url: "/albums",
       className: "button-albums",
     },
+    {
+      title: "Statistics",
+      icon: "statistics",
+      url: "/statistics",
+      className: "button-statistics",
+    },
   ];
 
   function openUrl(url) {

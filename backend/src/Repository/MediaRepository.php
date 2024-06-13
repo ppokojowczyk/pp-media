@@ -15,11 +15,6 @@ class MediaRepository extends EntityRepository
 {
     const MAX_RESULTS = 1000;
 
-    // public function __construct(string $mediaClass = '')
-    // {
-    //     $this->mediaClass = $mediaClass;
-    // }
-
     /**
      * Returns an array of MediaInterface objects.
      * @return MediaInterface[]
@@ -34,5 +29,19 @@ class MediaRepository extends EntityRepository
         //     ->setMaxResults(static::MAX_RESULTS)
         //     ->getQuery()
         //     ->getResult();
+    }
+
+    public function countOwned()
+    {
+        return intval($this->getEntityManager()
+            ->createQuery(sprintf('SELECT COUNT(m.id) FROM %s m WHERE m.own = 1', $this->getEntityName()))
+            ->getSingleScalarResult());
+    }
+
+    public function ownedTotalCost()
+    {
+        return $this->getEntityManager()
+            ->createQuery(sprintf('SELECT SUM(m.price) FROM %s m WHERE m.own = 1', $this->getEntityName()))
+            ->getSingleScalarResult();
     }
 }

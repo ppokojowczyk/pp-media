@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Factory;
 use App\ParseImdbUrl\ParseImdbUrl;
 use App\Service\MediaManager;
+use App\Service\Statistics;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -112,6 +113,21 @@ class MediaController extends AbstractController
         } catch (Exception $Exception) {
             $Response->setStatusCode(400);
         }
+        return $Response;
+    }
+
+    public function statistics()
+    {
+        $Response = new JsonResponse();
+
+        try {
+            $data = (new Statistics($this->Factory))->allStatistics();
+            $Response->setData($data);
+            $Response->setStatusCode(200);
+        } catch (Exception $Exception) {
+            $Response->setStatusCode(400);
+        }
+
         return $Response;
     }
 }

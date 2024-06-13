@@ -13,6 +13,7 @@ import {
   MOVIES_TYPE,
 } from "./utils/constants";
 import { makeList } from "./utils/list-factory";
+import Statistics from "./components/statistics";
 
 const MediaApp = () => {
   return (
@@ -30,6 +31,7 @@ const MediaApp = () => {
             <Route exact path="/games" render={() => makeList(GAMES_TYPE)} />
             <Route exact path="/books" render={() => makeList(BOOKS_TYPE)} />
             <Route exact path="/albums" render={() => makeList(ALBUMS_TYPE)} />
+            <Route exact path="/statistics" component={Statistics} />
           </div>
         </Router>
       </div>

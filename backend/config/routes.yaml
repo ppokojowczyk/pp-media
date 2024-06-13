@@ -141,4 +141,9 @@ albums_genres:
 imdb:
   path: /imdb/{mediaId}
   controller: App\Controller\MediaController::fetchDataFromImdb
+  methods:
+
+statistics:
+  path: /statistics
+  controller: App\Controller\MediaController::statistics
   methods: GET
