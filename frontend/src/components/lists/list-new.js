@@ -10,6 +10,7 @@ const ListNew = ({
   extraClass = "",
   refresh = false,
   addNew = null,
+  onImdbClick = null,
 }) => {
   const [data, setData] = useState([]);
   const [opacity, setOpacity] = useState(1);
@@ -35,7 +36,7 @@ const ListNew = ({
   return (
     <div className="list" style={{ opacity }}>
       <div className="list-panel">
-        {includeImdb && <Button text="+ IMDb" />}
+        {includeImdb && <Button text="+ IMDb" onClick={onImdbClick} />}
         <Button
           text="+ Add New"
           onClick={() => {

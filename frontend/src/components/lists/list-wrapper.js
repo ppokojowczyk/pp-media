@@ -6,6 +6,7 @@ import ListNew from "./list-new";
 import { dataSource } from "../../utils/data-source";
 import Edit from "../edit";
 import { confirm } from "../../utils/helpers";
+import Imdb from "../imdb";
 
 const ListWrapper = ({ mediaType = "", className = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -13,6 +14,7 @@ const ListWrapper = ({ mediaType = "", className = "" }) => {
   const [genres, setGenres] = useState([]);
   const [listVisible, setListVisible] = useState(true);
   const [editVisible, setEditVisible] = useState(false);
+  const [imdbVisible, setImdbVisible] = useState(false);
   const [edited, setEdited] = useState({});
   const [refreshList, setRefreshList] = useState(false);
 
@@ -91,6 +93,10 @@ const ListWrapper = ({ mediaType = "", className = "" }) => {
     });
   }
 
+  const onImdbClick = () => {
+    setImdbVisible(true);
+  }
+
   return (
     loaded && (
       <div>
@@ -105,6 +111,7 @@ const ListWrapper = ({ mediaType = "", className = "" }) => {
             addNew={() => {
               handleEdit(null);
             }}
+            onImdbClick={onImdbClick}
           />
         )}
         {editVisible && (
@@ -120,6 +127,26 @@ const ListWrapper = ({ mediaType = "", className = "" }) => {
             </div>
           </>
         )}
+        {
+          imdbVisible && (
+            <>
+              <div className="overlay"></div>
+              <div className="edit-container">
+                <Imdb
+                  genres={genres}
+                  isVisible={imdbVisible}
+                  onCancel={() => {
+                    setImdbVisible(false);
+                  }}
+                  onLoaded={(item) => {
+                    setEdited(item);
+                    setEditVisible(true);
+                  }}
+                />
+              </div>
+            </>
+          )
+        }
       </div>
     )
   )
