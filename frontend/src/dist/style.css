@@ -71,6 +71,8 @@
   background: black;
   border: 1px solid grey;
   border-radius: 10px;
+  max-height: calc(100% - 10%);
+  overflow: scroll;
 }
 .edit-field {
   width: 100%;
