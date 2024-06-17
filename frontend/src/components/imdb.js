@@ -110,41 +110,39 @@ const Imdb = ({
     };
 
     return (
-        <div class="imdb">
-            {
-                visible &&
-                <form action="#" onSubmit={fetchAndAdd}>
-                    <fieldset disabled={disabled}>
-                        <div>
-                            <label
-                                for='media-id'>
-                                Imdb Url
-                            </label>
-                        </div>
-                        <div>
-                            {renderInput({
-                                field: {
-                                    dataField: 'media-id',
-                                },
-                                data: mediaId,
-                                handleFieldUpdate: fupdate,
-                            })}
-                        </div>
-                        <hr style={{
-                            clear: 'both',
-                            opacity: 0,
-                            height: 0,
-                            border: 'none'
+        <div class="imdb" visible={visible}>
+            <form action="#" onSubmit={fetchAndAdd}>
+                <fieldset disabled={disabled}>
+                    <div>
+                        <label
+                            for='media-id'>
+                            Imdb Url
+                        </label>
+                    </div>
+                    <div>
+                        {renderInput({
+                            field: {
+                                dataField: 'media-id',
+                                caption: "Paste Imdb page URL",
+                            },
+                            data: mediaId,
+                            handleFieldUpdate: fupdate,
+                        })}
+                    </div>
+                    <hr style={{
+                        clear: 'both',
+                        opacity: 0,
+                        height: 0,
+                        border: 'none'
+                    }} />
+                    <div className="buttons">
+                        <Button text="Save" type="submit" />
+                        <Button text="Cancel" onClick={() => {
+                            hidePopup();
                         }} />
-                        <div className="buttons">
-                            <Button text="Save" type="submit" />
-                            <Button text="Cancel" onClick={() => {
-                                hidePopup();
-                            }} />
-                        </div>
-                    </fieldset>
-                </form>
-            }
+                    </div>
+                </fieldset>
+            </form>
         </div>
     );
 };
