@@ -7,6 +7,7 @@ import { dataSource } from "../../utils/data-source";
 import Edit from "../edit";
 import { confirm } from "../../utils/helpers";
 import Imdb from "../imdb";
+import Modal from "../modal";
 
 const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -115,17 +116,16 @@ const ListWrapper = ({ mediaType = "" }) => {
           />
         )}
         {editVisible && (
-          <>
-            <div className="overlay"></div>
-            <div className="edit-container">
+          <Modal
+            title={edited.id ? `Edit Item` : `New Item`}
+          >
               <Edit
                 fields={editableColumns()}
                 cancel={closeEdit}
                 data={edited}
                 save={handleSave}
               />
-            </div>
-          </>
+          </Modal>
         )}
         {
           imdbVisible && (
