@@ -8,7 +8,7 @@ import Edit from "../edit";
 import { confirm } from "../../utils/helpers";
 import Imdb from "../imdb";
 
-const ListWrapper = ({ mediaType = "", className = "" }) => {
+const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [genres, setGenres] = useState([]);
@@ -106,7 +106,7 @@ const ListWrapper = ({ mediaType = "", className = "" }) => {
             genres={genres}
             columns={columns}
             includeImdb={true}
-            extraClass={className}
+            extraClass={`${mediaType}-list`}
             refresh={refreshList}
             addNew={() => {
               handleEdit(null);
