@@ -1,3 +1,4 @@
+import Axios from "axios";
 import {
   ALBUMS_TYPE,
   API_URL,
@@ -27,7 +28,28 @@ const getMediaStoreUrl = (type = "") => {
 const getGenresStoreUrl = (type = "") => {
   const route = getRouteBase(type);
   if (!route) throw Error("Invalid route.");
-  return getApiUrl(route + "-genres");
+  return route + "-genres";
 };
 
-export { getMediaStoreUrl, getGenresStoreUrl };
+const fetch = (route) => {
+  return Axios
+    .get(getApiUrl(route))
+    .then(({ data }) => {
+      return data;
+    });
+}
+
+const getLanguages = () => {
+  return fetch('/languages');
+}
+
+const getGenres = (mediaType) => {
+  return fetch(getGenresStoreUrl(mediaType));
+}
+
+export {
+  getMediaStoreUrl,
+  getGenresStoreUrl,
+  getLanguages,
+  getGenres,
+};
