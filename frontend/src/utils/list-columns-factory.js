@@ -23,7 +23,7 @@ import {
 } from "./columns";
 import { ALBUMS_TYPE, BOOKS_TYPE, GAMES_TYPE, MOVIES_TYPE } from "./constants";
 
-const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDelete) => {
+const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDelete, languages) => {
   return [
     idColumn,
     numberColumn,
@@ -35,7 +35,7 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     releaseDateColumn,
     descriptionColumn,
     genresColumn(genresDictionary),
-    languageColumn,
+    languageColumn(languages),
     ratingColumn,
     favouriteColumn,
     saveWithoutValidationColumn,

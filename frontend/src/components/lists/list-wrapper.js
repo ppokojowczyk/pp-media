@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getGenresStoreUrl, getMediaStoreUrl } from "../../utils/api";
+import { getGenres, getLanguages, getMediaStoreUrl } from "../../utils/api";
 import { makeListColumns } from "../../utils/list-columns-factory";
 import Axios from "axios";
 import ListNew from "./list-new";
@@ -28,13 +28,18 @@ const ListWrapper = ({ mediaType = "" }) => {
   });
 
   useEffect(() => {
-    Axios.get(getGenresStoreUrl(mediaType)).then(({ data: genres }) => {
+
+    Promise.all([
+      getGenres(mediaType),
+      getLanguages(),
+    ]).then(([genres, languages]) => {
       setGenres(genres);
       setColumns(makeListColumns(mediaType, genres, (id) => {
         history.push(`/${mediaType}/${id}`);
-      }, handleDelete));
+      }, handleDelete, languages));
       setLoaded(true);
     });
+
   }, []);
 
   useEffect(() => {

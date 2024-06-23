@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "./helpers";
+import { formatDate, isArray } from "./helpers";
 import Check from "../components/check";
 
 const idColumn = {
@@ -197,10 +197,29 @@ const remarksColumn = {
   visible: false,
 };
 
-const languageColumn = {
-  caption: "Language",
-  dataField: "language",
-  visible: false,
+const languageColumn = (languages) => {
+  return {
+    caption: "Language",
+    dataField: "language",
+    visible: true,
+    fieldType: "choice",
+    data: languages,
+    alignment: 'center',
+    content: (c, e, v) => {
+      let text = v || '';
+
+      if (v !== undefined && v !== null && v) {
+        languages.forEach((_lang) => {
+          if (_lang.name === v) {
+            text = _lang.display;
+            return false;
+          }
+        });
+      }
+
+      return text;
+    },
+  };
 };
 
 const publisherColumn = {
