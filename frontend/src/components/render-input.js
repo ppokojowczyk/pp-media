@@ -2,6 +2,7 @@ import React from "react";
 import { formatDate } from "../utils/helpers";
 import Check from "./check";
 import Select from "./select";
+import Choice from "./choice";
 
 const renderInput = ({
     field,
@@ -10,6 +11,18 @@ const renderInput = ({
 }) => {
     const value = data[field.dataField];
     const fieldName = field.dataField;
+
+    if (field.fieldType === 'choice') {
+        return <Choice
+            value={value}
+            data={field.data.map(d => {
+                return { value: d.name, name: d.display };
+            })}
+            onChange={(newValue) => {
+                handleFieldUpdate(fieldName, newValue);
+            }}
+        />;
+    }
 
     if (field.fieldType === 'select') {
         return <Select
