@@ -8,6 +8,7 @@ import Edit from "../edit";
 import { confirm } from "../../utils/helpers";
 import Imdb from "../imdb";
 import Modal from "../modal";
+import { useParams, useHistory } from 'react-router-dom';
 
 const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -18,6 +19,8 @@ const ListWrapper = ({ mediaType = "" }) => {
   const [imdbVisible, setImdbVisible] = useState(false);
   const [edited, setEdited] = useState({});
   const [refreshList, setRefreshList] = useState(false);
+  const { id } = useParams();
+  const history = useHistory();
 
   const repository = dataSource({
     key: "id",
@@ -27,10 +30,16 @@ const ListWrapper = ({ mediaType = "" }) => {
   useEffect(() => {
     Axios.get(getGenresStoreUrl(mediaType)).then(({ data: genres }) => {
       setGenres(genres);
-      setColumns(makeListColumns(mediaType, genres, handleEdit, handleDelete));
+      setColumns(makeListColumns(mediaType, genres, (id) => {
+        history.push(`/${mediaType}/${id}`);
+      }, handleDelete));
       setLoaded(true);
     });
   }, []);
+
+  useEffect(() => {
+    id && handleEdit(id);
+  }, [id]);
 
   const handleEdit = (id = null) => {
     const callback = (data = {}) => {
@@ -86,6 +95,8 @@ const ListWrapper = ({ mediaType = "" }) => {
 
   const closeEdit = () => {
     setEditVisible(false);
+    setEdited({});
+    history.push(`/${mediaType}`);
   }
 
   const editableColumns = () => {
@@ -119,12 +130,12 @@ const ListWrapper = ({ mediaType = "" }) => {
           <Modal
             title={edited.id ? `Edit Item` : `New Item`}
           >
-              <Edit
-                fields={editableColumns()}
-                cancel={closeEdit}
-                data={edited}
-                save={handleSave}
-              />
+            <Edit
+              fields={editableColumns()}
+              cancel={closeEdit}
+              data={edited}
+              save={handleSave}
+            />
           </Modal>
         )}
         {

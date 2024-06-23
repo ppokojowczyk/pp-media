@@ -27,10 +27,10 @@ const MediaApp = () => {
           </header>
           <div className="App-content">
             <Route exact path="/" render={() => <Redirect to="/movies" />} />
-            <Route exact path="/movies" render={() => makeList(MOVIES_TYPE)} />
-            <Route exact path="/games" render={() => makeList(GAMES_TYPE)} />
-            <Route exact path="/books" render={() => makeList(BOOKS_TYPE)} />
-            <Route exact path="/albums" render={() => makeList(ALBUMS_TYPE)} />
+            <Route exact path="/movies/:id?" render={() => makeList(MOVIES_TYPE)} />
+            <Route exact path="/games/:id?" render={() => makeList(GAMES_TYPE)} />
+            <Route exact path="/books/:id?" render={() => makeList(BOOKS_TYPE)} />
+            <Route exact path="/albums/:id?" render={() => makeList(ALBUMS_TYPE)} />
             <Route exact path="/statistics" component={Statistics} />
           </div>
         </Router>
