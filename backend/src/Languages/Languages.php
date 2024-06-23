@@ -5,23 +5,29 @@ namespace App\Languages;
 class Languages
 {
     /**
-     * Returns array of all available languages.
+     * Array containing all languages.
+     * @param array
+     */
+    protected const LANGUAGES = [
+        ['en', 'English'],
+        ['pl', 'Polish'],
+        ['ru', 'Russian'],
+        ['fr', 'French'],
+        ['it', 'Italian'],
+        ['de', 'German'],
+    ];
+
+    /**
+     * Returns normalized array of all available languages.
      * @return array
      */
     public function all(): array
     {
-        $languages = array_map(function (string $language) {
+        return array_map(function (array $language) {
             return [
-                'name' => strtolower(substr($language, 0, 2)),
-                'display' => $language,
+                'name' => $language[0],
+                'display' => $language[1],
             ];
-        }, [
-            'English',
-            'Polish',
-            'Russian',
-            'German',
-        ]);
-
-        return $languages;
+        }, static::LANGUAGES);
     }
 }
