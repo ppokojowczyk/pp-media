@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getGenres, getLanguages, getMediaStoreUrl } from "../../utils/api";
 import { makeListColumns } from "../../utils/list-columns-factory";
-import Axios from "axios";
 import ListNew from "./list-new";
 import { dataSource } from "../../utils/data-source";
 import Edit from "../edit";
@@ -14,7 +13,6 @@ const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [genres, setGenres] = useState([]);
-  const [listVisible, setListVisible] = useState(true);
   const [editVisible, setEditVisible] = useState(false);
   const [imdbVisible, setImdbVisible] = useState(false);
   const [edited, setEdited] = useState({});
@@ -117,20 +115,18 @@ const ListWrapper = ({ mediaType = "" }) => {
   return (
     loaded && (
       <div>
-        {listVisible && (
-          <ListNew
-            repository={repository}
-            genres={genres}
-            columns={columns}
-            includeImdb={true}
-            extraClass={`${mediaType}-list`}
-            refresh={refreshList}
-            addNew={() => {
-              handleEdit(null);
-            }}
-            onImdbClick={onImdbClick}
-          />
-        )}
+        <ListNew
+          repository={repository}
+          genres={genres}
+          columns={columns}
+          includeImdb={true}
+          extraClass={`${mediaType}-list`}
+          refresh={refreshList}
+          addNew={() => {
+            handleEdit(null);
+          }}
+          onImdbClick={onImdbClick}
+        />
         {editVisible && (
           <Modal
             title={edited.id ? `Edit Item` : `New Item`}
