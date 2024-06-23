@@ -46,7 +46,12 @@ const confirm = ({
     );
 };
 
+const isArray = (value) => {
+    return typeof value !== 'undefined' && value && Array.isArray(value);
+};
+
 export {
     formatDate,
     confirm,
+    isArray,
 };
