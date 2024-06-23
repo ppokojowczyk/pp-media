@@ -12,8 +12,8 @@ class Languages
     {
         $languages = array_map(function (string $language) {
             return [
-                'id' => strtolower(substr($language, 0, 2)),
-                'name' => $language,
+                'name' => strtolower(substr($language, 0, 2)),
+                'display' => $language,
             ];
         }, [
             'English',
