@@ -25,7 +25,7 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
                 <fieldset>
                     {
                         fields.map((field, key) => {
-                            return <div key={key} className="edit-field">
+                            return <div key={key} className={["edit-field", field.width && `edit-field-${field.width}`].join(' ').trim()}>
                                 <div>
                                     <label
                                         for={field.dataField}>

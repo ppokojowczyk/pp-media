@@ -41,7 +41,7 @@ const releaseDateColumn = {
   dataField: "releaseDate",
   dataType: "date",
   format: "yyyy-MM-dd",
-  width: 100,
+  width: 50,
   alignment: 'center',
   content: (column, data, value) => {
     return formatDate(value);
@@ -87,7 +87,7 @@ const ratingColumn = {
   caption: "Rating",
   dataField: "rating",
   dataType: "number",
-  width: 100,
+  width: 50,
   alignment: "center",
   min: 0,
   max: 10,
@@ -97,7 +97,7 @@ const favouriteColumn = {
   caption: "Favourite",
   dataField: "isFavourite",
   dataType: "boolean",
-  width: 100,
+  width: 20,
   editorOptions: {
     cssClass: "dx-checkbox--favourite",
   },
@@ -113,6 +113,7 @@ const saveWithoutValidationColumn = {
   dataField: "ignoreValidation",
   dataType: "boolean",
   visible: false,
+  width: 20,
   calculateCellValue: () => false,
 };
 
@@ -120,7 +121,7 @@ const ownColumn = {
   caption: "Own",
   dataField: "own",
   dataType: "boolean",
-  width: 100,
+  width: 20,
   content: (column, data, value) => {
     return <Check value={value === true} />
   },
@@ -141,7 +142,7 @@ const playColumn = {
   caption: "To Play",
   dataField: "toPlay",
   dataType: "boolean",
-  width: 100,
+  width: 20,
   editorOptions: {
     cssClass: "dx-checkbox--to-watch",
   },
@@ -156,7 +157,7 @@ const completedColumn = {
   caption: "Completed",
   dataField: "completed",
   dataType: "boolean",
-  width: 100,
+  width: 20,
   editorOptions: {
     cssClass: "dx-checkbox--completed",
   },
@@ -171,7 +172,7 @@ const watchColumn = {
   caption: "To Watch",
   dataField: "toWatch",
   dataType: "boolean",
-  width: 100,
+  width: 20,
   editorOptions: {
     cssClass: "dx-checkbox--to-watch",
   },
@@ -186,7 +187,7 @@ const priceColumn = {
   caption: "Price",
   dataField: "price",
   dataType: "number",
-  width: 100,
+  width: 50,
   visible: false,
 }
 
@@ -205,6 +206,7 @@ const languageColumn = (languages) => {
     fieldType: "choice",
     data: languages,
     alignment: 'center',
+    width: 50,
     content: (c, e, v) => {
       let text = v || '';
 
@@ -226,6 +228,7 @@ const publisherColumn = {
   caption: "Publisher",
   dataField: "publisher",
   visible: false,
+  width: 50,
 };
 
 const developerColumn = {
@@ -238,6 +241,7 @@ const seriesColumn = {
   caption: "Series",
   dataField: "series",
   visible: false,
+  width: 50,
 }
 
 const optionsColumn = (handleEdit, handleDelete) => {
