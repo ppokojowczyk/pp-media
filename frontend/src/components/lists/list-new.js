@@ -13,6 +13,7 @@ const ListNew = ({
 }) => {
   const [data, setData] = useState([]);
   const [opacity, setOpacity] = useState(1);
+  const [filtered, setFiltered] = useState(false);
 
   const doRefresh = () => {
     setOpacity(0.3);
@@ -32,6 +33,16 @@ const ListNew = ({
     refresh === true && doRefresh();
   }, [refresh]);
 
+  const itemAppliesToSearchFilter = (item, search) => {
+    return (item.title && item.title.toLowerCase().indexOf(search) !== -1)
+      || (item.author && item.author.toLowerCase().indexOf(search) !== -1);
+  };
+
+  const applySearchFilter = (e) => {
+    const value = e.target.value;
+    setFiltered(value ? data.filter((item) => itemAppliesToSearchFilter(item, value)) : false);
+  };
+
   return (
     <div className="list" style={{ opacity }}>
       <div className="list-panel">
@@ -45,7 +56,7 @@ const ListNew = ({
         <Button
           text="Refresh"
           onClick={() => doRefresh()} />
-        <Input placeholder="Search..." onChange={() => { }} />
+        <Input placeholder="Search..." onChange={applySearchFilter} />
       </div>
       <table className="list-wrapper">
         <thead className="list-header">
@@ -62,8 +73,8 @@ const ListNew = ({
           </tr>
         </thead>
         <tbody className="list-body">
-          {data.length ?
-            data.map((datum, index) => {
+          {data.length || filtered !== false ?
+            ((filtered !== false) ? filtered : data).map((datum, index) => {
               return (
                 <tr className="list-body-row">
                   {columns
