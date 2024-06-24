@@ -7,7 +7,6 @@ const ListNew = ({
   repository = {},
   columns = [],
   includeImdb = false,
-  extraClass = "",
   refresh = false,
   addNew = null,
   onImdbClick = null,
