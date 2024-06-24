@@ -112,6 +112,27 @@ const ListWrapper = ({ mediaType = "" }) => {
     setImdbVisible(true);
   }
 
+  const prepareTitle = (item) => {
+    let entity = '';
+    switch (mediaType) {
+      case 'movies':
+        entity = 'Movie';
+        break;
+      case 'games':
+        entity = 'Game';
+        break;
+      case 'books':
+        entity = 'Book';
+        break;
+      case 'albums':
+        entity = 'Album';
+        break;
+      default:
+        break;
+    }
+    return `${edited.id ? 'Edit' : 'New'} ${entity}`;
+  };
+
   return (
     loaded && (
       <div>
@@ -129,7 +150,7 @@ const ListWrapper = ({ mediaType = "" }) => {
         />
         {editVisible && (
           <Modal
-            title={edited.id ? `Edit Item` : `New Item`}
+            title={prepareTitle(edited)}
           >
             <Edit
               fields={editableColumns()}

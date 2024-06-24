@@ -21,9 +21,19 @@
   border: 1px solid grey;
   border-radius: 10px;
   max-height: calc(100% - 10%);
-  overflow: scroll;
 
   &-title {
-    margin-left: 1.5em;
+    margin-left: 1.25em;
+    border: 1px solid grey;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 0.1em 1em;
+    position: absolute;
+    top: -1.75em;
+    background: black;
+  }
+
+  &-body {
+    overflow: scroll;
   }
 }
