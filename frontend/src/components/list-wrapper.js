@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getGenres, getLanguages, getMediaStoreUrl } from "../../utils/api";
-import { makeListColumns } from "../../utils/list-columns-factory";
-import ListNew from "./list-new";
-import { dataSource } from "../../utils/data-source";
-import Edit from "../edit";
-import { confirm } from "../../utils/helpers";
-import Imdb from "../imdb";
-import Modal from "../modal";
+import { getGenres, getLanguages, getMediaStoreUrl } from "../utils/api";
+import { makeListColumns } from "../utils/list-columns-factory";
+import ListNew from "./list";
+import { dataSource } from "../utils/data-source";
+import Edit from "./edit";
+import { confirm } from "../utils/helpers";
+import Imdb from "./imdb";
+import Modal from "./modal";
 import { useParams, useHistory } from 'react-router-dom';
 
 const ListWrapper = ({ mediaType = "" }) => {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { numberColumn } from "../../utils/columns";
-import Button from "../button";
-import Input from "../input";
+import { numberColumn } from "../utils/columns";
+import Button from "./button";
+import Input from "./input";
 
-const ListNew = ({
+const List = ({
   repository = {},
   columns = [],
   includeImdb = false,
@@ -119,4 +119,4 @@ const ListNew = ({
   );
 };
 
-export default ListNew;
+export default List;
