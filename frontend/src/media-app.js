@@ -1,8 +1,6 @@
 import React from "react";
 import "./dist/style.css";
 import Menu from "./components/menu";
-import "devextreme/dist/css/dx.common.css";
-import "devextreme/dist/css/dx.dark.css";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import Logo from "./components/logo";
 import {
