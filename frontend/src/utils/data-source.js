@@ -1,9 +1,6 @@
 const axios = require("axios");
 
-export function dataSource({
-  key,
-  url,
-}) {
+export function dataSource(url) {
 
   const handleReject = (err) => Promise.reject(
     err.response.data.message !== undefined
@@ -13,13 +10,12 @@ export function dataSource({
 
   const handleResolve = (res) => Promise.resolve(res);
 
+  const urlForId = (id) => url + "/" + encodeURIComponent(id);
+
   return {
-    key,
-    load: (loadOptions) => new Promise((resolve, reject) => {
+    load: () => new Promise((resolve, reject) => {
       axios
-        .get(url, {
-          params: loadOptions,
-        })
+        .get(url)
         .then((res) => {
           resolve({
             data: res.data.data,
@@ -27,15 +23,15 @@ export function dataSource({
           });
         });
     }),
-    byKey: (key) => axios.get(url + "/" + encodeURIComponent(key)),
+    byKey: (id) => axios.get(urlForId(id)),
     insert: (values) => axios
       .post(url, values)
       .then(handleResolve, handleReject),
-    update: (key, values) => axios
-      .put(url + "/" + encodeURIComponent(key), values)
+    update: (id, values) => axios
+      .put(urlForId(id), values)
       .then(handleResolve, handleReject),
-    remove: (key) => axios
-      .delete(url + "/" + encodeURIComponent(key))
+    remove: (id) => axios
+      .delete(urlForId(id))
       .then(handleResolve, handleReject),
   };
 };

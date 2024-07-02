@@ -19,11 +19,7 @@ const ListWrapper = ({ mediaType = "" }) => {
   const [refreshList, setRefreshList] = useState(false);
   const { id } = useParams();
   const history = useHistory();
-
-  const repository = dataSource({
-    key: "id",
-    url: getMediaStoreUrl(mediaType),
-  });
+  const repository = dataSource(getMediaStoreUrl(mediaType));
 
   useEffect(() => {
 
