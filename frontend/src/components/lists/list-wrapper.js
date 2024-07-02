@@ -51,7 +51,6 @@ const ListWrapper = ({ mediaType = "" }) => {
     }
 
     id ? repository
-      ._store
       .byKey(id)
       .then(({ data }) => {
         callback(data.data[0]);
@@ -63,7 +62,7 @@ const ListWrapper = ({ mediaType = "" }) => {
       text: `Delete entry ${id}?`,
       callback: (result) => {
         return (result === true)
-          ? repository._store.remove(id).then(() => {
+          ? repository.remove(id).then(() => {
             refresh();
             return Promise.resolve(result);
           })
@@ -82,9 +81,9 @@ const ListWrapper = ({ mediaType = "" }) => {
   const handleSave = (data) => {
     const func = data.id
       ? () => {
-        return repository._store.update(data.id, data);
+        return repository.update(data.id, data);
       } : () => {
-        return repository._store.insert(data);
+        return repository.insert(data);
       };
 
     func()

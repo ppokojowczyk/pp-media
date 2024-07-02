@@ -19,7 +19,7 @@ const ListNew = ({
     setOpacity(0.3);
     repository
       .load({})
-      .then((data) => {
+      .then(({data}) => {
         setData(data);
         setOpacity(1);
       });
