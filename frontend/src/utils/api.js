@@ -48,6 +48,7 @@ const getGenres = (mediaType) => {
 }
 
 export {
+  getApiUrl,
   getMediaStoreUrl,
   getGenresStoreUrl,
   getLanguages,
