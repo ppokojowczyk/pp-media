@@ -8,6 +8,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class MediaManager
 {
     /**
+     * @var ValidatorInterface
+     */
+    protected $validator;
+
+    /**
      * @var MediaDataSetter
      */
     protected $MediaDataSetter;
