@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getGenres, getLanguages, getMediaStoreUrl } from "../utils/api";
 import { makeListColumns } from "../utils/list-columns-factory";
-import ListNew from "./list";
+import List from "./list";
 import { dataSource } from "../utils/data-source";
 import Edit from "./edit";
 import { confirm } from "../utils/helpers";
@@ -131,7 +131,7 @@ const ListWrapper = ({ mediaType = "" }) => {
   return (
     loaded && (
       <div>
-        <ListNew
+        <List
           repository={repository}
           genres={genres}
           columns={columns}
