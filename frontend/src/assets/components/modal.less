@@ -20,7 +20,7 @@
   background: black;
   border: 1px solid grey;
   border-radius: 10px;
-  max-height: calc(100% - 10%);
+  height: calc(100% - 10%);
 
   &-title {
     margin-left: 1.25em;
@@ -31,9 +31,11 @@
     position: absolute;
     top: -1.75em;
     background: black;
+    z-index: 1;
   }
 
   &-body {
     overflow: scroll;
+    height: 100%;
   }
 }
