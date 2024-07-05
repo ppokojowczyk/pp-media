@@ -146,6 +146,7 @@ const ListWrapper = ({ mediaType = "" }) => {
         {editVisible && (
           <Modal
             title={prepareTitle(edited)}
+            onClosing={closeEdit}
           >
             <Edit
               fields={editableColumns()}
