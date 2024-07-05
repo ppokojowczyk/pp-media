@@ -1,15 +1,15 @@
 const mediaTypes = [
     {
-        type: 'movies',
+        type: 'movie',
     },
     {
-        type: 'games',
+        type: 'game',
     },
     {
-        type: 'books',
+        type: 'book',
     },
     {
-        type: 'albums',
+        type: 'music',
     },
 ];
 
