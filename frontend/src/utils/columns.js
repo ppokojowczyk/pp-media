@@ -260,6 +260,13 @@ const optionsColumn = (handleEdit, handleDelete) => {
   };
 };
 
+const coverColumn = {
+  caption: "Cover",
+  visible: false,
+  allowEditing: true,
+  dataField: "cover",
+};
+
 export {
   idColumn,
   numberColumn,
@@ -282,4 +289,5 @@ export {
   publisherColumn,
   developerColumn,
   seriesColumn,
+  coverColumn,
 };

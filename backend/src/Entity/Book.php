@@ -22,6 +22,11 @@ class Book extends Media
      */
     protected $author;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    protected $cover;
+
     public function getGenreClass(): string
     {
         return BookGenre::class;
@@ -35,5 +40,15 @@ class Book extends Media
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    public function setCover(string $cover)
+    {
+        $this->cover = $cover;
+    }
+
+    public function getCover(string $cover): string
+    {
+        return $this->cover;
     }
 }
