@@ -34,6 +34,7 @@ const titleColumn = {
   dataField: "title",
   validationRules: [{ type: "required" }],
   className: "item-title",
+  dataType: "text",
 };
 
 const releaseDateColumn = {
