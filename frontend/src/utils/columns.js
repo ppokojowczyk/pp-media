@@ -267,6 +267,14 @@ const coverColumn = {
   dataField: "cover",
 };
 
+const quantityColumn = {
+  caption: "Quantity",
+  visible: false,
+  allowEditing: true,
+  dataField: "quantity",
+  dataType: "number",
+};
+
 export {
   idColumn,
   numberColumn,
@@ -290,4 +298,5 @@ export {
   developerColumn,
   seriesColumn,
   coverColumn,
+  quantityColumn,
 };
