@@ -85,6 +85,11 @@ abstract class Media implements MediaInterface, TimestampInterface
      */
     protected $series;
 
+    /**
+     * @ORM\Column(type="smallint", options={"unsigned"=true})
+     */
+    protected $quantity;
+
     protected $ignore_validation;
 
     public function getId()
@@ -275,6 +280,16 @@ abstract class Media implements MediaInterface, TimestampInterface
     public function getSeries()
     {
         return $this->series;
+    }
+
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)

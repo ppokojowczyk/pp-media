@@ -31,6 +31,7 @@ class MediaDataSetter
             "publisher",
             "developer",
             "series",
+            "quantity",
             "cover",
         ];
     }
