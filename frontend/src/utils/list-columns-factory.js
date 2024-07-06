@@ -1,6 +1,7 @@
 import {
   authorColumn,
   completedColumn,
+  coverColumn,
   descriptionColumn,
   developerColumn,
   favouriteColumn,
@@ -36,6 +37,7 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     languageColumn(languages),
     descriptionColumn,
     genresColumn(genresDictionary),
+    mediaType === BOOKS_TYPE && coverColumn,
     ratingColumn,
     priceColumn,
     favouriteColumn,
