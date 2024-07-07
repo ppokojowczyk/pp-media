@@ -51,16 +51,6 @@ class MediaManager
 
     /**
      * @param MediaInterface $Media
-     * 
-     * @return MediaInterface
-     */
-    public function checkIfUnique(MediaInterface $Media): MediaInterface
-    {
-        return $Media;
-    }
-
-    /**
-     * @param MediaInterface $Media
      * @param array $data
      * 
      * @return MediaInterface
