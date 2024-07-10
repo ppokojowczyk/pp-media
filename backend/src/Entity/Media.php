@@ -8,6 +8,7 @@ use Exception;
 use Incompass\TimestampableBundle\Entity\TimestampInterface;
 use Incompass\TimestampableBundle\Entity\TimestampTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Base class for various Media.
@@ -294,6 +295,10 @@ abstract class Media implements MediaInterface, TimestampInterface
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
+        $metadata->addPropertyConstraint(
+            'title',
+            new Assert\NotBlank(['message' => 'Title is required.'])
+        );
         $metadata->addConstraint(new UniqueEntity([
             'fields' => ['title', 'release_date'],
             'message' => 'Title with release date already exists'
