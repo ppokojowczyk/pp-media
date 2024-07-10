@@ -9,7 +9,6 @@ import { getApiUrl, getCsvTemplate, getGenres, getLanguages } from "../utils/api
 import { makeListColumns } from "../utils/list-columns-factory";
 import { importActionType, saveColumn, saveWithoutValidationColumn } from "../utils/columns";
 import ListWrapperImport from "../components/list-wrapper-import";
-import remapMediaType from "../utils/remap-media-type";
 import ImportResult from "../components/import-result";
 import Modal from "../components/modal";
 
@@ -360,7 +359,7 @@ const Import = () => {
                 (data !== null && mediaType) && (
                     <div>
                         <ListWrapperImport
-                            mediaType={remapMediaType(mediaType)}
+                            mediaType={mediaType}
                             repository={repository}
                             prepareColumns={prepareColumns}
                             id={id}
