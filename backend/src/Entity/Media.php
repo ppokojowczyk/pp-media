@@ -29,7 +29,7 @@ abstract class Media implements MediaInterface, TimestampInterface
     protected $title;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=10000)
      */
     protected $description;
 
