@@ -2,14 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Media;
 use App\Factory;
 use App\ParseImdbUrl\ParseImdbUrl;
+use App\Service\Importer;
 use App\Service\MediaManager;
 use App\Service\Statistics;
+use Error;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class MediaController extends AbstractController
 {
@@ -33,6 +37,36 @@ class MediaController extends AbstractController
         $Repository = $this->Factory->makeMediaRepository($mediaType);
         $data = !empty($id) ? [$Repository->find($id)] : $Repository->findAll();
         return $this->json(['data' => $data, 'totalCount' => count($data)]);
+    }
+
+    /**
+     * @todo move to service or manager
+     * @todo add type for $doctrine
+     */
+    private function saveNewMedia(string $mediaType, array $data, MediaManager $manager, $doctrine): Media
+    {
+        $mediaClass = $this->getMediaClass($mediaType);
+
+        if (isset($data['id'])) {
+            $repository = $this->Factory->makeMediaRepository($mediaType);
+            $media = $repository->find($data['id']);
+        } else {
+            $media = new $mediaClass();
+        }
+
+        if (!$media) {
+            throw new Error('Media not found/not created.');
+        }
+
+        $manager->setDataFromArray($media, $data);
+        // New entry, validate.
+        /** @todo maybe this should be determined different? */
+        if (!$media->getId()) {
+            $manager->validate($media);
+        }
+        $manager->save($doctrine, $media);
+
+        return $media;
     }
 
     public function newMedia(string $mediaType = '', Request $Request, MediaManager $MediaManager): JsonResponse
@@ -129,5 +163,55 @@ class MediaController extends AbstractController
         }
 
         return $Response;
+    }
+
+    /**
+     * @todo move to separate service or media manager or importer
+     */
+    public function batchSave(Request $request, MediaManager $manager, Importer $importer): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $mediaType = $data['mediaType'];
+        $medias = $data['medias'];
+        $unsetFields = ['id', 'save'];
+        $total = 0;
+        $saved = 0;
+        $failed = 0;
+        $failedIds = [];
+        $errors = [];
+        $tempId = '';
+
+        foreach ($medias as $item) {
+            $tempId = $item['id'];
+            try {
+                if (!$item['save']) {
+                    continue;
+                }
+                $total++;
+                foreach ($unsetFields as $field) {
+                    if (array_key_exists($field, $item)) {
+                        unset($item[$field]);
+                    }
+                }
+                if (isset($item['existingId'])) {
+                    $item['id'] = $item['existingId'];
+                }
+                $importer->fillEmptyFields($item);
+                $this->saveNewMedia($mediaType, $item, $manager, $this->getDoctrine()->getManager());
+                $saved++;
+            } catch (Exception $e) {
+                $failed++;
+                $failedIds[] = $tempId;
+                $errors[] = sprintf("%s -> %s", $tempId, $e->getMessage());
+            }
+        }
+
+        return $this->json([
+            'total' => $total,
+            'saved' => $saved,
+            'failed' => $failed,
+            'failedIds' => $failedIds,
+            'errors' => $errors,
+        ], 200);
     }
 }
