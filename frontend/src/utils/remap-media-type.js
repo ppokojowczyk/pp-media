@@ -1,15 +1,15 @@
-import { ALBUMS_TYPE, ALBUM_TYPE, BOOKS_TYPE, BOOK_TYPE, GAMES_TYPE, GAME_TYPE, MOVIES_TYPE, MOVIE_TYPE } from "./constants";
+import { ALBUM_TYPE, BOOK_TYPE, GAME_TYPE, MOVIE_TYPE } from "./constants";
 
 export default function remapMediaType(mediaType) {
     switch (mediaType) {
         case MOVIE_TYPE:
-            return MOVIES_TYPE;
+            return MOVIE_TYPE;
         case BOOK_TYPE:
-            return BOOKS_TYPE;
+            return BOOK_TYPE;
         case ALBUM_TYPE:
-            return ALBUMS_TYPE;
+            return ALBUM_TYPE;
         case GAME_TYPE:
-            return GAMES_TYPE;
+            return GAME_TYPE;
         default:
             throw new Error('Invalid media type.');
     }

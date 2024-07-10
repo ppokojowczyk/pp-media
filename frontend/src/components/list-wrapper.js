@@ -30,7 +30,7 @@ const ListWrapper = ({ mediaType = "" }) => {
     ]).then(([genres, languages]) => {
       setGenres(genres);
       setColumns(makeListColumns(mediaType, genres, (id) => {
-        history.push(`/${mediaType}/${id}`);
+        history.push(`/${mediaType}s/${id}`);
       }, handleDelete, languages));
       setLoaded(true);
     });
@@ -95,7 +95,7 @@ const ListWrapper = ({ mediaType = "" }) => {
   const closeEdit = () => {
     setEditVisible(false);
     setEdited({});
-    history.push(`/${mediaType}`);
+    history.push(`/${mediaType}s`);
   }
 
   const editableColumns = () => {

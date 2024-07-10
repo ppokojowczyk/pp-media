@@ -1,10 +1,10 @@
 import Axios from "axios";
 import {
-  ALBUMS_TYPE,
+  ALBUM_TYPE,
   API_URL,
-  BOOKS_TYPE,
-  GAMES_TYPE,
-  MOVIES_TYPE,
+  BOOK_TYPE,
+  GAME_TYPE,
+  MOVIE_TYPE,
 } from "./constants";
 
 const getApiUrl = (route = "") => {
@@ -12,10 +12,10 @@ const getApiUrl = (route = "") => {
 };
 
 const getRouteBase = (type = "") => {
-  if (type === MOVIES_TYPE) return "/movies";
-  if (type === GAMES_TYPE) return "/games";
-  if (type === BOOKS_TYPE) return "/books";
-  if (type === ALBUMS_TYPE) return "/albums";
+  if (type === MOVIE_TYPE) return "/movies";
+  if (type === GAME_TYPE) return "/games";
+  if (type === BOOK_TYPE) return "/books";
+  if (type === ALBUM_TYPE) return "/albums";
   throw Error("Invalid media type.");
 };
 

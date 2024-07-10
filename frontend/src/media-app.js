@@ -4,11 +4,11 @@ import Menu from "./components/menu";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import Logo from "./components/logo";
 import {
-  ALBUMS_TYPE,
+  ALBUM_TYPE,
   APP_TITLE,
-  BOOKS_TYPE,
-  GAMES_TYPE,
-  MOVIES_TYPE,
+  BOOK_TYPE,
+  GAME_TYPE,
+  MOVIE_TYPE,
 } from "./utils/constants";
 import { makeList } from "./utils/list-factory";
 import Statistics from "./components/statistics";
@@ -26,10 +26,10 @@ const MediaApp = () => {
           </header>
           <div className="App-content">
             <Route exact path="/" render={() => <Redirect to="/movies" />} />
-            <Route exact path="/movies/:id?" render={() => makeList(MOVIES_TYPE)} />
-            <Route exact path="/games/:id?" render={() => makeList(GAMES_TYPE)} />
-            <Route exact path="/books/:id?" render={() => makeList(BOOKS_TYPE)} />
-            <Route exact path="/albums/:id?" render={() => makeList(ALBUMS_TYPE)} />
+            <Route exact path="/movies/:id?" render={() => makeList(MOVIE_TYPE)} />
+            <Route exact path="/games/:id?" render={() => makeList(GAME_TYPE)} />
+            <Route exact path="/books/:id?" render={() => makeList(BOOK_TYPE)} />
+            <Route exact path="/albums/:id?" render={() => makeList(ALBUM_TYPE)} />
             <Route exact path="/statistics" component={Statistics} />
             <Route exact path="/import" component={Import} />
           </div>

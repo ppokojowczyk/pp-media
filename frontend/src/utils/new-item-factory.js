@@ -1,5 +1,5 @@
 import { authorColumn, completedColumn, coverColumn, descriptionColumn, favouriteColumn, genresColumn, languageColumn, ownColumn, priceColumn, publisherColumn, quantityColumn, ratingColumn, releaseDateColumn, remarksColumn, saveWithoutValidationColumn, seriesColumn, titleColumn, watchColumn } from "./columns";
-import { BOOKS_TYPE } from "./constants";
+import { BOOK_TYPE } from "./constants";
 
 const makeNewItem = (type) => {
     const data = {
@@ -21,7 +21,7 @@ const makeNewItem = (type) => {
         [quantityColumn.dataField]: 0,
     };
 
-    if (type === BOOKS_TYPE) {
+    if (type === BOOK_TYPE) {
         data[authorColumn.dataField] = '';
         data[coverColumn.dataField] = '';
     }

@@ -23,15 +23,15 @@ import {
   titleColumn,
   watchColumn,
 } from "./columns";
-import { ALBUMS_TYPE, BOOKS_TYPE, GAMES_TYPE, MOVIES_TYPE } from "./constants";
+import { ALBUM_TYPE, BOOK_TYPE, GAME_TYPE, MOVIE_TYPE } from "./constants";
 
 const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDelete, languages) => {
   return [
     idColumn,
     numberColumn,
     titleColumn,
-    (mediaType === BOOKS_TYPE || mediaType === ALBUMS_TYPE) && authorColumn,
-    (mediaType === GAMES_TYPE) && developerColumn,
+    (mediaType === BOOK_TYPE || mediaType === ALBUM_TYPE) && authorColumn,
+    (mediaType === GAME_TYPE) && developerColumn,
     publisherColumn,
     seriesColumn,
     releaseDateColumn,
@@ -39,14 +39,14 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     descriptionColumn,
     genresColumn(genresDictionary),
     quantityColumn,
-    mediaType === BOOKS_TYPE && coverColumn,
+    mediaType === BOOK_TYPE && coverColumn,
     ratingColumn,
     priceColumn,
     favouriteColumn,
     saveWithoutValidationColumn({}),
     ownColumn,
-    mediaType === MOVIES_TYPE && watchColumn,
-    mediaType === GAMES_TYPE && playColumn,
+    mediaType === MOVIE_TYPE && watchColumn,
+    mediaType === GAME_TYPE && playColumn,
     completedColumn,
     remarksColumn,
     optionsColumn(handleEdit, handleDelete),
