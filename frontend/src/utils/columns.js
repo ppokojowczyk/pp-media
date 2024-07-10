@@ -261,8 +261,14 @@ const optionsColumn = (handleEdit, handleDelete) => {
     content: (column, data) => {
       return (
         [
-          <a className="list-link" href="#" onClick={() => handleEdit(data.id)}>Edit</a>,
-          <a className="list-link" href="#" onClick={() => handleDelete(data.id)}>Delete</a>
+          <a className="list-link" href="" onClick={(e) => {
+            e.preventDefault();
+            handleEdit(data.id);
+          }}>Edit</a>,
+          <a className="list-link" href="" onClick={(e) => {
+            e.preventDefault();
+            handleDelete(data.id);
+          }}>Delete</a>
         ]
       );
     }
