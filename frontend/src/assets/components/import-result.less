@@ -1,0 +1,30 @@
+.import-result {
+  float: right;
+  color: #fff;
+  margin-left: 1em;
+
+  &-item {
+    border-radius: 4px;
+    border: 1px solid white;
+    padding: 0.25em 0.5em;
+
+    &--saved {
+      color: lime;
+      border-color: lime;
+    }
+
+    &--failed {
+      color: red;
+      border-color: red;
+    }
+
+    &--total {
+      color: skyblue;
+      border-color: skyblue;
+    }
+
+    & + & {
+      margin-left: 0.5em;
+    }
+  }
+}
