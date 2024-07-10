@@ -8,9 +8,18 @@ import { confirm } from "../utils/helpers";
 import Imdb from "./imdb";
 import Modal from "./modal";
 import { useParams, useHistory } from 'react-router-dom';
-import makeNewItem from "../utils/new-item-factory";
 
-const ListWrapper = ({ mediaType = "" }) => {
+const ListWrapperImport = ({
+  mediaType = "",
+  repository,
+  prepareColumns,
+  id,
+  onEditClose,
+  includeImdb,
+  withAddNew,
+  refresh1,
+  withRefreshButton,
+}) => {
   const [columns, setColumns] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [genres, setGenres] = useState([]);
@@ -18,23 +27,25 @@ const ListWrapper = ({ mediaType = "" }) => {
   const [imdbVisible, setImdbVisible] = useState(false);
   const [edited, setEdited] = useState({});
   const [refreshList, setRefreshList] = useState(false);
-  const { id } = useParams();
+  // const { id } = useParams();
   const history = useHistory();
-  const repository = dataSource(getMediaStoreUrl(mediaType));
 
   useEffect(() => {
-
     Promise.all([
       getGenres(mediaType),
       getLanguages(),
     ]).then(([genres, languages]) => {
       setGenres(genres);
-      setColumns(makeListColumns(mediaType, genres, (id) => {
-        history.push(`/${mediaType}/${id}`);
-      }, handleDelete, languages));
+      setColumns(
+        prepareColumns(
+          mediaType,
+          genres,
+          languages,
+          handleDelete,
+        )
+      );
       setLoaded(true);
     });
-
   }, []);
 
   useEffect(() => {
@@ -51,7 +62,7 @@ const ListWrapper = ({ mediaType = "" }) => {
       .byKey(id)
       .then(({ data }) => {
         callback(data.data[0]);
-      }) : callback(makeNewItem(mediaType));
+      }) : callback({});
   }
 
   const handleDelete = (id) => {
@@ -75,6 +86,10 @@ const ListWrapper = ({ mediaType = "" }) => {
     }, 1);
   }
 
+  useEffect(() => {
+    refresh();
+  }, [refresh1])
+
   const handleSave = (data) => {
     const func = data.id
       ? () => {
@@ -95,7 +110,8 @@ const ListWrapper = ({ mediaType = "" }) => {
   const closeEdit = () => {
     setEditVisible(false);
     setEdited({});
-    history.push(`/${mediaType}`);
+    // history.push(`/${mediaType}`);
+    onEditClose && onEditClose();
   }
 
   const editableColumns = () => {
@@ -136,18 +152,19 @@ const ListWrapper = ({ mediaType = "" }) => {
           repository={repository}
           genres={genres}
           columns={columns}
-          includeImdb={true}
+          includeImdb={includeImdb}
           extraClass={`${mediaType}-list`}
           refresh={refreshList}
+          withAddNew={withAddNew}
           addNew={() => {
             handleEdit(null);
           }}
           onImdbClick={onImdbClick}
+          withRefreshButton={withRefreshButton}
         />
         {editVisible && (
           <Modal
             title={prepareTitle(edited)}
-            onClosing={closeEdit}
           >
             <Edit
               fields={editableColumns()}
@@ -182,4 +199,4 @@ const ListWrapper = ({ mediaType = "" }) => {
   )
 };
 
-export default ListWrapper;
+export default ListWrapperImport;

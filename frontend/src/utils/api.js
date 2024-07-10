@@ -47,10 +47,13 @@ const getGenres = (mediaType) => {
   return fetch(getGenresStoreUrl(mediaType));
 }
 
+const getCsvTemplate = (mediaType) => fetch(`/csv-template/${mediaType}`);
+
 export {
   getApiUrl,
   getMediaStoreUrl,
   getGenresStoreUrl,
   getLanguages,
   getGenres,
+  getCsvTemplate,
 };

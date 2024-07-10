@@ -147,3 +147,18 @@ statistics:
   path: /statistics
   controller: App\Controller\MediaController::statistics
   methods: GET
+
+import:
+  path: /import
+  controller: App\Controller\ImportController::import
+  methods: POST
+
+csv_template:
+  path: /csv-template/{mediaType}
+  controller: App\Controller\ImportController::csvTemplate
+  methods: GET
+
+batch_save:
+  path: /batch-save
+  controller: App\Controller\MediaController::batchSave
+  methods: POST

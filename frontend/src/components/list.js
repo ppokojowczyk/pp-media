@@ -10,6 +10,8 @@ const List = ({
   refresh = false,
   addNew = null,
   onImdbClick = null,
+  withAddNew = true,
+  withRefreshButton = true,
 }) => {
   const [data, setData] = useState([]);
   const [opacity, setOpacity] = useState(1);
@@ -19,7 +21,7 @@ const List = ({
     setOpacity(0.3);
     repository
       .load({})
-      .then(({data}) => {
+      .then(({ data }) => {
         setData(data);
         setOpacity(1);
       });
@@ -47,15 +49,15 @@ const List = ({
     <div className="list" style={{ opacity }}>
       <div className="list-panel">
         {includeImdb && <Button text="+ IMDb" onClick={onImdbClick} />}
-        <Button
+        {withAddNew && <Button
           text="+ Add New"
           onClick={() => {
             addNew();
           }}
-        />
-        <Button
+        />}
+        {withRefreshButton && <Button
           text="Refresh"
-          onClick={() => doRefresh()} />
+          onClick={() => doRefresh()} />}
         <Input placeholder="Search..." onChange={applySearchFilter} />
       </div>
       <table className="list-wrapper">
