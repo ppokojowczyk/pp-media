@@ -93,6 +93,8 @@ abstract class Media implements MediaInterface, TimestampInterface
 
     protected $ignore_validation;
 
+    public $existingId;
+
     public function getId()
     {
         return $this->id;
