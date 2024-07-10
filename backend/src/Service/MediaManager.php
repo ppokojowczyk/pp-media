@@ -2,7 +2,10 @@
 
 namespace App\Service;
 
+use App\Entity\Album;
+use App\Entity\Media;
 use App\Entity\MediaInterface;
+use App\Factory;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class MediaManager
@@ -71,5 +74,41 @@ class MediaManager
         $EntityManager->persist($Media);
         $EntityManager->flush();
         return $Media;
+    }
+
+    /**
+     * Find id of duplicate for entity.
+     * @param Media $Media
+     * @param string $mediaType
+     * @param Factory $factory
+     *
+     * @return int|null
+     */
+    public function findDuplicateId(Media $Media, string $mediaType, Factory $factory)
+    {
+        $repository = $factory->makeMediaRepository($mediaType);
+        $existing = null;
+        $title = $Media->getTitle();
+        $releaseDate = $Media->getReleaseDate();
+
+        // Find by both.
+        $existing = $repository->findOneBy([
+            'title' => $title,
+            'release_date' => $releaseDate,
+        ]);
+
+        // Find by title only.
+        if (!$existing) {
+            $existing = $repository->findOneBy([
+                'title' => $title,
+            ]);
+        }
+
+        /** @var Media $existing */
+        if ($existing) {
+            return $existing->getId();
+        }
+
+        return null;
     }
 }
