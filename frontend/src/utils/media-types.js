@@ -9,7 +9,7 @@ const mediaTypes = [
         type: 'book',
     },
     {
-        type: 'music',
+        type: 'album',
     },
 ];
 

@@ -19,8 +19,8 @@ class MediaType
         return "game";
     }
 
-    public static function music(): string
+    public static function album(): string
     {
-        return "music";
+        return "album";
     }
 }

@@ -174,7 +174,7 @@ class Importer
         $template = '';
 
         switch ($mediaType) {
-            case MediaType::music():
+            case MediaType::album():
                 $template = 'author;title;genres;releaseDate;own;quantity;publisher;remarks;price';
                 break;
             case MediaType::book():

@@ -108,35 +108,35 @@ albums:
   controller: App\Controller\MediaController::medias
   methods: GET
   defaults:
-    mediaType: music
+    mediaType: album
 
 create_new_album:
   path: /albums
   controller: App\Controller\MediaController::newMedia
   methods: POST
   defaults:
-    mediaType: music
+    mediaType: album
 
 update_album:
   path: /albums/{id}
   controller: App\Controller\MediaController::updateMedia
   methods: PUT
   defaults:
-    mediaType: music
+    mediaType: album
 
 delete_album:
   path: /albums/{id}
   controller: App\Controller\MediaController::deleteMedia
   methods: DELETE
   defaults:
-    mediaType: music
+    mediaType: album
 
 albums_genres:
   path: /albums-genres
   controller: App\Controller\GenresController::genres
   methods: GET
   defaults:
-    mediaType: music
+    mediaType: album
 
 imdb:
   path: /imdb/{mediaId}

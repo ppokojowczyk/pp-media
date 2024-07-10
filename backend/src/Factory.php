@@ -36,7 +36,7 @@ class Factory
             return new BooksGenresDictionary();
         else if ($mediaType === MediaType::game())
             return new GamesGenresDictionary();
-        else if ($mediaType === MediaType::music())
+        else if ($mediaType === MediaType::album())
             return new AlbumsGenresDictionary();
         throw $this->invalidMediaTypeException();
     }
@@ -49,7 +49,7 @@ class Factory
             return Movie::class;
         elseif ($mediaType === MediaType::game())
             return Game::class;
-        elseif ($mediaType === MediaType::music())
+        elseif ($mediaType === MediaType::album())
             return Album::class;
         throw $this->invalidMediaTypeException();
     }

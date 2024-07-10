@@ -27,7 +27,7 @@ class Statistics
         $mediaTypes = [
             [MediaType::game(), 'Games'],
             [MediaType::movie(), 'Movies'],
-            [MediaType::music(), 'Albums'],
+            [MediaType::album(), 'Albums'],
             [MediaType::book(), 'Books'],
         ];
         $total = 0;

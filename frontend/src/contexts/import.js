@@ -232,7 +232,7 @@ const Import = () => {
     const [test, setTest] = useState(IS_TEST);
     useEffect(() => {
         if (test === 1) {
-            setMediaType('music');
+            setMediaType('album');
         }
     }, []);
     useEffect(() => {
