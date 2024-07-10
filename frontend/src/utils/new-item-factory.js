@@ -1,14 +1,15 @@
-import { completedColumn, descriptionColumn, favouriteColumn, genresColumn, languageColumn, ownColumn, priceColumn, publisherColumn, ratingColumn, releaseDateColumn, remarksColumn, saveWithoutValidationColumn, seriesColumn, titleColumn, watchColumn } from "./columns";
+import { authorColumn, completedColumn, coverColumn, descriptionColumn, favouriteColumn, genresColumn, languageColumn, ownColumn, priceColumn, publisherColumn, quantityColumn, ratingColumn, releaseDateColumn, remarksColumn, saveWithoutValidationColumn, seriesColumn, titleColumn, watchColumn } from "./columns";
+import { BOOKS_TYPE } from "./constants";
 
 const makeNewItem = (type) => {
-    return {
+    const data = {
         [titleColumn.dataField]: '',
         [publisherColumn.dataField]: '',
         [seriesColumn.dataField]: '',
         [releaseDateColumn.dataField]: '',
         [descriptionColumn.dataField]: '',
         [genresColumn.dataField]: [],
-        [languageColumn.dataField]: '',
+        language: '',
         [ratingColumn.dataField]: 0,
         [favouriteColumn.dataField]: false,
         [saveWithoutValidationColumn.dataField]: false,
@@ -17,7 +18,15 @@ const makeNewItem = (type) => {
         [completedColumn.dataField]: false,
         [priceColumn.dataField]: 0,
         [remarksColumn.dataField]: '',
+        [quantityColumn.dataField]: 0,
+    };
+
+    if (type === BOOKS_TYPE) {
+        data[authorColumn.dataField] = '';
+        data[coverColumn.dataField] = '';
     }
+
+    return data;
 };
 
 export default makeNewItem;
