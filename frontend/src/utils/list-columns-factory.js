@@ -43,7 +43,7 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     ratingColumn,
     priceColumn,
     favouriteColumn,
-    saveWithoutValidationColumn,
+    saveWithoutValidationColumn({}),
     ownColumn,
     mediaType === MOVIES_TYPE && watchColumn,
     mediaType === GAMES_TYPE && playColumn,

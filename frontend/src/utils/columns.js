@@ -109,13 +109,21 @@ const favouriteColumn = {
   alignment: 'center',
 };
 
-const saveWithoutValidationColumn = {
-  caption: "Save without validation",
-  dataField: "ignoreValidation",
-  dataType: "boolean",
-  visible: false,
-  width: 20,
-  calculateCellValue: () => false,
+const saveWithoutValidationColumn = ({ change }) => {
+  return {
+    caption: "Ignore validation",
+    dataField: "ignoreValidation",
+    dataType: "boolean",
+    visible: false,
+    width: 20,
+    calculateCellValue: () => false,
+    content: (column, data, value) => {
+      return <Check value={value === true} onChange={(v) => {
+        change && change(data.id, v);
+      }} />
+    },
+    alignment: 'center',
+  }
 };
 
 const ownColumn = {
@@ -276,6 +284,39 @@ const quantityColumn = {
   dataType: "number",
 };
 
+const importActionType = {
+  caption: "Action",
+  visible: true,
+  content: (column, data) => {
+    return data.existingId ? `Update (${data.existingId})` : 'New';
+  },
+  width: 50,
+  alignment: 'center',
+  allowEditing: false,
+};
+
+const saveColumn = ({
+  change,
+}) => {
+  return {
+    caption: "Save",
+    dataField: "save",
+    visible: true,
+    width: 20,
+    dataType: "boolean",
+    editorOptions: {
+      cssClass: "dx-checkbox--to-watch",
+    },
+    cssClass: "dx-checkbox--to-watch",
+    content: (column, data, value) => {
+      return <Check value={value === true} onChange={(v) => {
+        change(data.id, v);
+      }} />
+    },
+    alignment: 'center',
+  }
+};
+
 export {
   idColumn,
   numberColumn,
@@ -299,5 +340,7 @@ export {
   developerColumn,
   seriesColumn,
   coverColumn,
+  importActionType,
+  saveColumn,
   quantityColumn,
 };

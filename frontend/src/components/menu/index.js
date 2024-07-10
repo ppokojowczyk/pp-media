@@ -34,6 +34,12 @@ const Menu = ({ history }) => {
       url: "/statistics",
       className: "button-statistics",
     },
+    {
+      title: "Import",
+      icon: "import",
+      url: "/import",
+      className: "button-import",
+    },
   ];
 
   function openUrl(url) {
