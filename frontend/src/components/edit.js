@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "./button";
 import renderInput from "./render-input";
+import CharsCounter from "./chars-counter";
 
 const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
 
@@ -31,6 +32,7 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
                                         for={field.dataField}>
                                         {field.caption}
                                     </label>
+                                    {field.dataType === 'text' && <CharsCounter value={data[field.dataField]} max={1000} />}
                                 </div>
                                 <div>
                                     {renderInput({
