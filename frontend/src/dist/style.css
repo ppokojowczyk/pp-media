@@ -195,7 +195,7 @@ label {
   background: black;
   border: 1px solid grey;
   border-radius: 10px;
-  max-height: calc(100% - 10%);
+  height: calc(100% - 10%);
 }
 .modal-title {
   margin-left: 1.25em;
@@ -206,12 +206,45 @@ label {
   position: absolute;
   top: -1.75em;
   background: black;
+  z-index: 1;
 }
 .modal-body {
   overflow: scroll;
+  height: 100%;
 }
 .input-choice {
   width: 100%;
+}
+.header-text {
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-bottom: 1px dashed #fff;
+  padding: 0.1em 0.5em;
+}
+.import-result {
+  float: right;
+  color: #fff;
+  margin-left: 1em;
+}
+.import-result-item {
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 0.25em 0.5em;
+}
+.import-result-item--saved {
+  color: lime;
+  border-color: lime;
+}
+.import-result-item--failed {
+  color: red;
+  border-color: red;
+}
+.import-result-item--total {
+  color: skyblue;
+  border-color: skyblue;
+}
+.import-result-item + .import-result-item {
+  margin-left: 0.5em;
 }
 .App {
   background-color: #282c34;
@@ -469,6 +502,7 @@ html,
   font-size: 1.2em;
   color: #fff !important;
   text-shadow: 0 0 1px #fff !important;
+  white-space: pre-line;
 }
 h2 {
   color: #fff;
