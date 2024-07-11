@@ -29,7 +29,7 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
     };
 
     return (
-        <div class="edit">
+        <div className="edit">
             <form action="#" onSubmit={handleSave}>
                 <fieldset>
                     {
