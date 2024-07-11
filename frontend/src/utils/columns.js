@@ -101,9 +101,6 @@ const favouriteColumn = {
   dataField: "isFavourite",
   dataType: "boolean",
   width: 20,
-  editorOptions: {
-    cssClass: "dx-checkbox--favourite",
-  },
   cssClass: "dx-checkbox--favourite",
   content: (column, data, value) => {
     return <Check value={value === true} />
@@ -144,9 +141,6 @@ const authorColumn = {
   dataField: "author",
   dataType: "string",
   width: 100,
-  editorOptions: {
-    maxLength: 30,
-  },
   maxLength: 100,
 };
 
@@ -155,9 +149,6 @@ const playColumn = {
   dataField: "toPlay",
   dataType: "boolean",
   width: 20,
-  editorOptions: {
-    cssClass: "dx-checkbox--to-watch",
-  },
   cssClass: "dx-checkbox--to-watch",
   content: (column, data, value) => {
     return <Check value={value === true} />
@@ -170,9 +161,6 @@ const completedColumn = {
   dataField: "completed",
   dataType: "boolean",
   width: 20,
-  editorOptions: {
-    cssClass: "dx-checkbox--completed",
-  },
   cssClass: "dx-checkbox--completed",
   content: (column, data, value) => {
     return <Check value={value === true} />
@@ -185,9 +173,6 @@ const watchColumn = {
   dataField: "toWatch",
   dataType: "boolean",
   width: 20,
-  editorOptions: {
-    cssClass: "dx-checkbox--to-watch",
-  },
   cssClass: "dx-checkbox--to-watch",
   content: (column, data, value) => {
     return <Check value={value === true} />
@@ -318,9 +303,6 @@ const saveColumn = ({
     visible: true,
     width: 20,
     dataType: "boolean",
-    editorOptions: {
-      cssClass: "dx-checkbox--to-watch",
-    },
     cssClass: "dx-checkbox--to-watch",
     content: (column, data, value) => {
       return <Check value={value === true} onChange={(v) => {
