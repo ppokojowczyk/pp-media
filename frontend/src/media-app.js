@@ -21,7 +21,7 @@ const MediaApp = () => {
         <Router>
           <header className="App-header">
             <Logo />
-            <div className="App-header-title">{APP_TITLE}</div>
+            <div className="App-header-title" onClick={() => { window.location.href = '/'; }}>{APP_TITLE}</div>
             <Menu />
           </header>
           <div className="App-content">
