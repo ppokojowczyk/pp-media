@@ -20,6 +20,14 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
         save(data);
     }
 
+    const charsCounter = (field) => {
+        return ((field.dataType === 'text' || !field.dataType)
+            && field?.maxLength
+        )
+            ? <CharsCounter value={data[field.dataField]} max={field.maxLength} />
+            : null;
+    };
+
     return (
         <div class="edit">
             <form action="#" onSubmit={handleSave}>
@@ -32,7 +40,7 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
                                         for={field.dataField}>
                                         {field.caption}
                                     </label>
-                                    {field.dataType === 'text' && <CharsCounter value={data[field.dataField]} max={1000} />}
+                                    {charsCounter(field)}
                                 </div>
                                 <div>
                                     {renderInput({
