@@ -47,7 +47,7 @@ class Book extends Media
         $this->cover = $cover;
     }
 
-    public function getCover(string $cover): string
+    public function getCover(): string
     {
         return $this->cover;
     }
