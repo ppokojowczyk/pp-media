@@ -47,6 +47,7 @@ const renderInput = ({
             onChange={(e) => {
                 handleFieldUpdate(field.dataField, e.target.value);
             }}
+            maxLength={field?.maxLength}
         >{data[field.dataField]}</textarea>
     } else if (field.dataType === 'date') {
         return <input
@@ -77,6 +78,7 @@ const renderInput = ({
         className="input"
         placeholder={field.caption}
         value={data[field.dataField]}
+        maxLength={field?.maxLength}
         onChange={(e) => {
             handleFieldUpdate(field.dataField, e.target.value)
         }}
