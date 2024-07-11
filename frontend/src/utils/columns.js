@@ -1,6 +1,7 @@
 import React from "react";
 import { formatDate, isArray } from "./helpers";
 import Check from "../components/check";
+import Link from "../components/link";
 
 const idColumn = {
   caption: "ID",
@@ -250,20 +251,10 @@ const optionsColumn = (handleEdit, handleDelete) => {
     caption: "Options",
     alignment: 'center',
     allowEditing: false,
-    content: (column, data) => {
-      return (
-        [
-          <a className="list-link" href="" onClick={(e) => {
-            e.preventDefault();
-            handleEdit(data.id);
-          }}>Edit</a>,
-          <a className="list-link" href="" onClick={(e) => {
-            e.preventDefault();
-            handleDelete(data.id);
-          }}>Delete</a>
-        ]
-      );
-    }
+    content: (column, data) => [
+      <Link onClick={() => handleEdit(data.id)}>Edit</Link>,
+      <Link onClick={() => handleDelete(data.id)}>Delete</Link>,
+    ],
   };
 };
 
