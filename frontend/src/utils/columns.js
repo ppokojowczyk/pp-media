@@ -35,6 +35,7 @@ const titleColumn = {
   validationRules: [{ type: "required" }],
   className: "item-title",
   dataType: "text",
+  maxLength: 255,
 };
 
 const releaseDateColumn = {
@@ -55,6 +56,7 @@ const descriptionColumn = {
   dataType: "text",
   editorType: "dxTextArea",
   visible: false,
+  maxLength: 10000,
 };
 
 const genresColumn = (genresDictionary = []) => {
@@ -205,6 +207,7 @@ const remarksColumn = {
   dataField: "remarks",
   dataType: "text",
   visible: false,
+  maxLength: 1000,
 };
 
 const languageColumn = (languages) => {
@@ -238,6 +241,7 @@ const publisherColumn = {
   dataField: "publisher",
   visible: false,
   width: 50,
+  maxLength: 255,
 };
 
 const developerColumn = {
@@ -251,6 +255,7 @@ const seriesColumn = {
   dataField: "series",
   visible: false,
   width: 50,
+  maxLength: 255,
 }
 
 const optionsColumn = (handleEdit, handleDelete) => {
