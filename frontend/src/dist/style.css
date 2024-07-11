@@ -274,6 +274,25 @@ label {
   position: relative;
   padding-bottom: 1px;
 }
+.view .input,
+.view .input-choice,
+.view .input-number,
+.view .input-select,
+.view .input-check,
+.view .input-textarea,
+.view .input:hover,
+.view .input-choice:hover,
+.view .input-number:hover,
+.view .input-select:hover,
+.view .input-check:hover,
+.view .input-textarea:hover {
+  transition: none;
+  box-shadow: none !important;
+  cursor: default !important;
+}
+.view .input-select-item {
+  cursor: default !important;
+}
 .App {
   background-color: #282c34;
   min-height: 100vh;

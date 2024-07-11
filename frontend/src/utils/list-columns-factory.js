@@ -25,7 +25,7 @@ import {
 } from "./columns";
 import { ALBUM_TYPE, BOOK_TYPE, GAME_TYPE, MOVIE_TYPE } from "./constants";
 
-const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDelete, languages) => {
+const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDelete, languages, handleView = null) => {
   return [
     idColumn,
     numberColumn,
@@ -49,7 +49,7 @@ const makeListColumns = (mediaType = "", genresDictionary, handleEdit, handleDel
     mediaType === GAME_TYPE && playColumn,
     completedColumn,
     remarksColumn,
-    optionsColumn(handleEdit, handleDelete),
+    optionsColumn(handleEdit, handleDelete, handleView),
   ].filter((column) => {
     return column;
   });

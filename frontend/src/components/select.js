@@ -4,8 +4,13 @@ const Select = ({
     value = [],
     data = [],
     onChange = null,
+    readOnly,
 }) => {
     const handleChange = (v) => {
+        if (readOnly) {
+            return;
+        }
+
         const newValue = [...value];
         const currentIndex = newValue.indexOf(v);
 

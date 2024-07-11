@@ -8,9 +8,13 @@ const renderInput = ({
     field,
     data,
     handleFieldUpdate,
+    readOnly,
 }) => {
     const value = data[field.dataField];
     const fieldName = field.dataField;
+    const props = {
+        readOnly,
+    };
 
     if (field.fieldType === 'choice') {
         return <Choice
@@ -21,6 +25,7 @@ const renderInput = ({
             onChange={(newValue) => {
                 handleFieldUpdate(fieldName, newValue);
             }}
+            {...props}
         />;
     }
 
@@ -33,6 +38,7 @@ const renderInput = ({
             onChange={(newValue) => {
                 handleFieldUpdate(fieldName, newValue);
             }}
+            {...props}
         />;
     } else if (field.dataType === 'boolean') {
         return <Check
@@ -40,6 +46,7 @@ const renderInput = ({
             onChange={(v) => {
                 handleFieldUpdate(field.dataField, v);
             }}
+            {...props}
         />;
     } else if (field.dataType === 'text') {
         return <textarea
@@ -48,6 +55,7 @@ const renderInput = ({
                 handleFieldUpdate(field.dataField, e.target.value);
             }}
             maxLength={field?.maxLength}
+            {...props}
         >{data[field.dataField]}</textarea>
     } else if (field.dataType === 'date') {
         return <input
@@ -59,6 +67,7 @@ const renderInput = ({
             value={
                 formatDate(data[field.dataField])
             }
+            {...props}
         />
     } else if (field.dataType === 'number') {
         return <input
@@ -71,6 +80,7 @@ const renderInput = ({
             value={value}
             min={field.min}
             max={field.max}
+            {...props}
         />
     }
 
@@ -82,6 +92,7 @@ const renderInput = ({
         onChange={(e) => {
             handleFieldUpdate(field.dataField, e.target.value)
         }}
+        {...props}
     />)
 };
 

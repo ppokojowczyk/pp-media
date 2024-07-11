@@ -3,7 +3,7 @@ import Button from "./button";
 import renderInput from "./render-input";
 import CharsCounter from "./chars-counter";
 
-const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
+const Edit = ({ fields = [], save = null, cancel = null, data: d = {}, readOnly = false }) => {
 
     const [data, setData] = useState(d);
 
@@ -17,7 +17,7 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
 
     const handleSave = (e) => {
         e.preventDefault();
-        save(data);
+        save && save(data);
     }
 
     const charsCounter = (field) => {
@@ -47,6 +47,7 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
                                         field,
                                         data,
                                         handleFieldUpdate,
+                                        readOnly,
                                     })}
                                 </div>
                             </div>
@@ -70,7 +71,7 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {} }) => {
                             e.preventDefault();
                             setJsonVisible(!jsonVisible);
                         }}></Button>
-                        <Button text="Save" type="submit" />
+                        {save && <Button text="Save" type="submit" />}
                         <Button text="Cancel" onClick={cancel} />
                     </div>
                 </fieldset>

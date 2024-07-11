@@ -9,6 +9,7 @@ import Imdb from "./imdb";
 import Modal from "./modal";
 import { useParams, useHistory } from 'react-router-dom';
 import makeNewItem from "../utils/new-item-factory";
+import View from "./view";
 
 const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -21,6 +22,7 @@ const ListWrapper = ({ mediaType = "" }) => {
   const { id } = useParams();
   const history = useHistory();
   const repository = dataSource(getMediaStoreUrl(mediaType));
+  const [viewItem, setViewItem] = useState(null);
 
   useEffect(() => {
 
@@ -31,7 +33,7 @@ const ListWrapper = ({ mediaType = "" }) => {
       setGenres(genres);
       setColumns(makeListColumns(mediaType, genres, (id) => {
         history.push(`/${mediaType}s/${id}`);
-      }, handleDelete, languages));
+      }, handleDelete, languages, handleView));
       setLoaded(true);
     });
 
@@ -53,6 +55,8 @@ const ListWrapper = ({ mediaType = "" }) => {
         callback(data.data[0]);
       }) : callback(makeNewItem(mediaType));
   }
+
+  const handleView = (id) => repository.byKey(id).then(({ data }) => setViewItem(data.data[0]));
 
   const handleDelete = (id) => {
     confirm({
@@ -144,6 +148,18 @@ const ListWrapper = ({ mediaType = "" }) => {
           }}
           onImdbClick={onImdbClick}
         />
+        {viewItem && (
+          <Modal
+            title='View'
+            onClosing={() => setViewItem(null)}
+          >
+            <View
+              fields={editableColumns()}
+              cancel={() => setViewItem(null)}
+              data={viewItem}
+            />
+          </Modal>
+        )}
         {editVisible && (
           <Modal
             title={prepareTitle(edited)}

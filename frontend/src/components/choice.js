@@ -4,6 +4,7 @@ const Choice = ({
     data = [],
     value = null,
     onChange = () => { },
+    readOnly,
 }) => {
 
     // Add default empty item.
@@ -14,7 +15,7 @@ const Choice = ({
 
     const handleChange = (e) => onChange(e.target.value);
 
-    return <select className="input input-choice" onChange={handleChange}>
+    return <select className="input input-choice" onChange={handleChange} disabled={readOnly}>
         {data.map(({
             value: v,
             name,

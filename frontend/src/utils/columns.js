@@ -246,12 +246,13 @@ const seriesColumn = {
   maxLength: 255,
 }
 
-const optionsColumn = (handleEdit, handleDelete) => {
+const optionsColumn = (handleEdit, handleDelete, handleView = null) => {
   return {
     caption: "Options",
     alignment: 'center',
     allowEditing: false,
     content: (column, data) => [
+      handleView && <Link onClick={() => handleView(data.id)}>View</Link>,
       <Link onClick={() => handleEdit(data.id)}>Edit</Link>,
       <Link onClick={() => handleDelete(data.id)}>Delete</Link>,
     ],
