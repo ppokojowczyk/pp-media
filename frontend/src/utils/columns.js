@@ -147,6 +147,7 @@ const authorColumn = {
   editorOptions: {
     maxLength: 30,
   },
+  maxLength: 100,
 };
 
 const playColumn = {
@@ -248,6 +249,7 @@ const developerColumn = {
   caption: "Developer",
   dataField: "developer",
   visible: false,
+  maxLength: 255,
 };
 
 const seriesColumn = {
@@ -285,6 +287,7 @@ const coverColumn = {
   visible: false,
   allowEditing: true,
   dataField: "cover",
+  maxLength: 20,
 };
 
 const quantityColumn = {
