@@ -24,11 +24,6 @@ class MediaRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(sprintf('SELECT m FROM %s m ORDER BY m.title ASC', $this->getEntityName()))
             ->getResult();
-        // return $this->createQueryBuilder('m')
-        //     ->orderBy('m.id', 'DESC')
-        //     ->setMaxResults(static::MAX_RESULTS)
-        //     ->getQuery()
-        //     ->getResult();
     }
 
     public function countOwned()
