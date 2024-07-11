@@ -1,3 +1,16 @@
+.link,
+.link:visited {
+  color: #ccc;
+  text-decoration: none;
+  cursor: pointer;
+}
+.link + .link {
+  margin-left: 5px;
+}
+.link:hover {
+  color: white;
+  border-color: white;
+}
 .button {
   padding: 5px 10px;
   font-weight: bold;
@@ -294,12 +307,6 @@ label {
 .App-link {
   color: #61dafb;
 }
-.link {
-  color: #36e;
-  text-decoration: none;
-  padding-bottom: 2px;
-  border-bottom: 1px dotted #36e;
-}
 .dx-datagrid-header-panel .dx-toolbar {
   margin: 0 !important;
   padding: 5px !important;
@@ -500,17 +507,6 @@ html,
   to {
     opacity: 1;
   }
-}
-.list-link + .list-link {
-  margin-left: 5px;
-}
-.list-link,
-.list-link:visited {
-  color: grey;
-  text-decoration: none;
-}
-.list-link:hover {
-  color: white;
 }
 .item-title {
   font-style: italic;
