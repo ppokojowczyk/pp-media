@@ -22,7 +22,7 @@ class MediaRepository extends EntityRepository
     public function findAll()
     {
         return $this->getEntityManager()
-            ->createQuery(sprintf('SELECT m FROM %s m ORDER BY m.id ASC', $this->getEntityName()))
+            ->createQuery(sprintf('SELECT m FROM %s m ORDER BY m.title ASC', $this->getEntityName()))
             ->getResult();
         // return $this->createQueryBuilder('m')
         //     ->orderBy('m.id', 'DESC')
