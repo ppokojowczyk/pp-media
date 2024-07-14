@@ -10,6 +10,7 @@ import Modal from "./modal";
 import { useParams, useHistory } from 'react-router-dom';
 import makeNewItem from "../utils/new-item-factory";
 import View from "./view";
+import ListFilters from "./list-filters";
 
 const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -23,9 +24,21 @@ const ListWrapper = ({ mediaType = "" }) => {
   const history = useHistory();
   const repository = dataSource(getMediaStoreUrl(mediaType));
   const [viewItem, setViewItem] = useState(null);
+  const [filters, setFilters] = useState({
+    sort: 'title',
+    order: 'ASC',
+    own: '',
+  });
+
+  repository.filters = function (value) {
+    if (typeof this._filters === 'undefined') {
+      this._filters = {};
+    }
+    this._filters = value;
+  };
+  repository.filters(filters);
 
   useEffect(() => {
-
     Promise.all([
       getGenres(mediaType),
       getLanguages(),
@@ -36,7 +49,6 @@ const ListWrapper = ({ mediaType = "" }) => {
       }, handleDelete, languages, handleView));
       setLoaded(true);
     });
-
   }, []);
 
   useEffect(() => {
@@ -147,6 +159,17 @@ const ListWrapper = ({ mediaType = "" }) => {
             handleEdit(null);
           }}
           onImdbClick={onImdbClick}
+          addToPanel={
+            <ListFilters
+              mediaType={mediaType}
+              filters={filters}
+              update={(filters) => {
+                setFilters(filters);
+                repository.filters(filters);
+                refresh();
+              }}
+            />
+          }
         />
         {viewItem && (
           <Modal

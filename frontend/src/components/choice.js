@@ -5,10 +5,11 @@ const Choice = ({
     value = null,
     onChange = () => { },
     readOnly,
+    noDefault,
 }) => {
 
     // Add default empty item.
-    data.unshift({
+    !noDefault && data.unshift({
         value: null,
         name: '',
     });

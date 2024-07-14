@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Media;
 use App\Factory;
 use App\ParseImdbUrl\ParseImdbUrl;
+use App\Repository\MediaFilter;
 use App\Service\Importer;
 use App\Service\MediaManager;
 use App\Service\Statistics;
@@ -32,10 +33,11 @@ class MediaController extends AbstractController
         return $this->Factory->makeMediaClass($mediaType);
     }
 
-    public function medias(string $mediaType = '', $id = ''): JsonResponse
+    public function medias(string $mediaType = '', $id = '', Request $request): JsonResponse
     {
+        $filters = MediaFilter::fromRequest($request);
         $Repository = $this->Factory->makeMediaRepository($mediaType);
-        $data = !empty($id) ? [$Repository->find($id)] : $Repository->findAll();
+        $data = !empty($id) ? [$Repository->find($id)] : $Repository->findWithFilters($filters);
         return $this->json(['data' => $data, 'totalCount' => count($data)]);
     }
 

@@ -26,6 +26,31 @@ class MediaRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Find filtered entries.
+     * @param MediaFilter $filters
+     * 
+     * @return MediaInterface[]
+     */
+    public function findWithFilters(MediaFilter $filters): array
+    {
+        $builder = $this->createQueryBuilder('m');
+        $own = $filters->own();
+
+        if ($filters->sort() && $filters->order()) {
+            $builder->orderBy('m.' . $filters->sort(), $filters->order());
+        }
+
+        if ($own === '1' || $own === '0') {
+            $builder->andWhere('m.own = :own');
+            $builder->setParameter('own', $own);
+        }
+
+        $query = $builder->getQuery();
+
+        return $query->execute();
+    }
+
     public function countOwned()
     {
         return intval($this->getEntityManager()

@@ -12,6 +12,7 @@ const List = ({
   onImdbClick = null,
   withAddNew = true,
   withRefreshButton = true,
+  addToPanel = null,
 }) => {
   const [data, setData] = useState([]);
   const [opacity, setOpacity] = useState(1);
@@ -59,6 +60,7 @@ const List = ({
           text="Refresh"
           onClick={() => doRefresh()} />}
         <Input placeholder="Search..." onChange={applySearchFilter} />
+        {addToPanel}
       </div>
       <table className="list-wrapper">
         <thead className="list-header">

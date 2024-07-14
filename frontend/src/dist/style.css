@@ -293,6 +293,9 @@ label {
 .view .input-select-item {
   cursor: default !important;
 }
+.list-filters .input {
+  width: 100px;
+}
 .App {
   background-color: #282c34;
   min-height: 100vh;
