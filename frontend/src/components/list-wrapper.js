@@ -11,6 +11,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import makeNewItem from "../utils/new-item-factory";
 import View from "./view";
 import ListFilters from "./list-filters";
+import { getConfigOption, saveConfigOption } from "../utils/config";
 
 const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -24,10 +25,11 @@ const ListWrapper = ({ mediaType = "" }) => {
   const history = useHistory();
   const repository = dataSource(getMediaStoreUrl(mediaType));
   const [viewItem, setViewItem] = useState(null);
+  const defaultFilters = getConfigOption('filters', {});
   const [filters, setFilters] = useState({
-    sort: 'title',
-    order: 'ASC',
-    own: '',
+    sort: defaultFilters.sort || 'title',
+    order: defaultFilters.order || 'ASC',
+    own: defaultFilters.own || '',
   });
 
   repository.filters = function (value) {
@@ -165,6 +167,7 @@ const ListWrapper = ({ mediaType = "" }) => {
               filters={filters}
               update={(filters) => {
                 setFilters(filters);
+                saveConfigOption('filters', filters);
                 repository.filters(filters);
                 refresh();
               }}

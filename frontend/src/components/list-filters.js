@@ -16,6 +16,10 @@ const ListFilters = ({
 
     if (mediaType === ALBUM_TYPE || mediaType === BOOK_TYPE) {
         sort.push({ name: 'Author', value: 'author' });
+    } else {
+        if (filters.sort === 'author') {
+            filters.sort = 'id';
+        }
     }
 
     const order = [
