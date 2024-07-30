@@ -25,8 +25,8 @@ const ListFilters = ({
 
     const own = [
         { name: 'All', value: '', },
-        { name: 'Yes', value: 1, },
-        { name: 'No', value: 0, },
+        { name: 'Yes', value: '1', },
+        { name: 'No', value: '0', },
     ];
 
     const handleUpdate = (filter, value) => update({ ...filters, [filter]: value });
