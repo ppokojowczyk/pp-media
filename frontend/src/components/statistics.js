@@ -3,6 +3,7 @@ import Axios from "axios";
 import { API_URL } from "../utils/constants";
 import Button from "./button";
 import Header from "./header";
+import StatCard from "./stat-card";
 
 const Statistics = () => {
 
@@ -30,7 +31,7 @@ const Statistics = () => {
                 onClick={load}
             />
             <br /><br />
-            {data.map((d) => <div>{d.name} &rarr; <span>{d.value}</span></div>)}
+            {data.map((d) => <StatCard name={d.name} value={d.value} />)}
         </div>
     )
 };
