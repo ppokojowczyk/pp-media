@@ -30,3 +30,7 @@ services:
     App\EventListener\PdoInit:
         tags:
             - { name: doctrine.event_listener, event: postConnect }
+
+    App\Service\UploadsService:
+        arguments:
+            $root: '%kernel.project_dir%'

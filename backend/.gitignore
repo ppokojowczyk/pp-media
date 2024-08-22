@@ -3,6 +3,8 @@
 /.env.local.php
 /.env.*.local
 /public/bundles/
+/public/uploads/
+/public/thumbnails/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

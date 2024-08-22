@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\UploadRepository;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
@@ -94,6 +95,13 @@ abstract class Media implements MediaInterface, TimestampInterface
     protected $ignore_validation;
 
     public $existingId;
+
+    protected $uploads;
+
+    /**
+     * @var Upload[]
+     */
+    protected $images = [];
 
     public function getId()
     {
@@ -309,5 +317,15 @@ abstract class Media implements MediaInterface, TimestampInterface
             'fields' => ['title'],
             'message' => 'Title already exists'
         ]));
+    }
+
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    public function getImages(): array
+    {
+        return $this->images;
     }
 }

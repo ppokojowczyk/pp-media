@@ -12,6 +12,7 @@ import makeNewItem from "../utils/new-item-factory";
 import View from "./view";
 import ListFilters from "./list-filters";
 import { getConfigOption, saveConfigOption } from "../utils/config";
+import { uploadRepository } from "../utils/uploads-repository";
 
 const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -24,6 +25,7 @@ const ListWrapper = ({ mediaType = "" }) => {
   const { id } = useParams();
   const history = useHistory();
   const repository = dataSource(getMediaStoreUrl(mediaType));
+  const uploadRepo = uploadRepository();
   const [viewItem, setViewItem] = useState(null);
   const defaultFilters = getConfigOption('filters', {});
   const [filters, setFilters] = useState({
@@ -101,13 +103,26 @@ const ListWrapper = ({ mediaType = "" }) => {
         return repository.insert(data);
       };
 
+    const { images, removeImages = [] } = data;
+
     func()
-      .then(() => {
+      .then(({ data }) => {
+        if (data.id) {
+          return uploadRepo.upload(
+            mediaType,
+            data.id,
+            images,
+            removeImages,
+          );
+        } else {
+          return Promise.resolve();
+        }
+      }).then(() => {
         closeEdit();
         refresh();
       }).catch((err) => {
         alert(err.toString());
-      })
+      });
   }
 
   const closeEdit = () => {

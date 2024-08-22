@@ -162,3 +162,18 @@ batch_save:
   path: /batch-save
   controller: App\Controller\MediaController::batchSave
   methods: POST
+
+upload:
+  path: /upload/{mediaType}/{id}
+  controller: App\Controller\UploadsController::upload
+  methods: POST
+
+image:
+  path: /image/{id}
+  controller: App\Controller\UploadsController::image
+  methods: GET
+
+image_thumbnail:
+  path: /image/thumb/{id}
+  controller: App\Controller\UploadsController::imageThumbnail
+  methods: GET

@@ -9,6 +9,7 @@ use App\Repository\MediaFilter;
 use App\Service\Importer;
 use App\Service\MediaManager;
 use App\Service\Statistics;
+use App\Service\UploadsService;
 use Error;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +24,15 @@ class MediaController extends AbstractController
      */
     protected $Factory;
 
-    public function __construct(Factory $Factory)
+    /**
+     * @var UploadsService
+     */
+    protected $uploadsService;
+
+    public function __construct(Factory $Factory, UploadsService $uploadsService)
     {
         $this->Factory = $Factory;
+        $this->uploadsService = $uploadsService;
     }
 
     public function getMediaClass(string $mediaType = ''): string
@@ -38,6 +45,15 @@ class MediaController extends AbstractController
         $filters = MediaFilter::fromRequest($request);
         $Repository = $this->Factory->makeMediaRepository($mediaType);
         $data = !empty($id) ? [$Repository->find($id)] : $Repository->findWithFilters($filters);
+
+        /**
+         * @todo move to uploads controller
+         * @todo implement repository/request on frontend
+         */
+        if ($id && isset($data[0])) {
+            $this->uploadsService->addImagesToMedia($data[0]);
+        }
+
         return $this->json(['data' => $data, 'totalCount' => count($data)]);
     }
 
@@ -74,6 +90,7 @@ class MediaController extends AbstractController
     public function newMedia(string $mediaType = '', Request $Request, MediaManager $MediaManager): JsonResponse
     {
         $Response = new JsonResponse();
+
         try {
             $data = json_decode($Request->getContent(), true);
             $mediaClass = $this->getMediaClass($mediaType);
@@ -82,17 +99,19 @@ class MediaController extends AbstractController
             $MediaManager->validate($Media);
             $MediaManager->save($this->getDoctrine()->getManager(), $Media);
             $Response->setStatusCode(200);
-            $Response->setJson(json_encode(['message' => 'Media was added']));
+            $Response->setJson(json_encode(['message' => 'Media was added.', 'id' => $Media->getId()]));
         } catch (\Exception $Exception) {
             $Response->setStatusCode(400);
             $Response->setJson(json_encode(['message' => $Exception->getMessage()]));
         }
+
         return $Response;
     }
 
     public function updateMedia(string $mediaType = '', $id = null, Request $Request, MediaManager $MediaManager): JsonResponse
     {
         $Response = new JsonResponse();
+
         try {
             $data = json_decode($Request->getContent(), true);
             if (!isset($id)) {
@@ -105,10 +124,13 @@ class MediaController extends AbstractController
             }
             $MediaManager->setDataFromArray($Media, $data);
             $MediaManager->save($EntityManager, $Media);
+            $Response->setJson(json_encode(['message' => 'Media was updated.', 'id' => $Media->getId()]));
             $Response->setStatusCode(200);
         } catch (\Exception $ex) {
             $Response->setStatusCode(400);
+            $Response->setJson(json_encode(['message' => $ex->getMessage()]));
         }
+
         return $Response;
     }
 

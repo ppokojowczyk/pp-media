@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "./button";
 import renderInput from "./render-input";
 import CharsCounter from "./chars-counter";
+import Images from "../contexts/images";
 
 const Edit = ({ fields = [], save = null, cancel = null, data: d = {}, readOnly = false }) => {
 
@@ -53,6 +54,37 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {}, readOnly 
                             </div>
                         })
                     }
+                    <Images
+                        images={data.images}
+                        onUploaded={(images) => {
+                            const newImages = [...data.images, ...images];
+                            handleFieldUpdate('images', newImages);
+                        }}
+                        onRemove={(image) => {
+                            const newData = { ...data };
+                            const newImages = data.images.filter((image_) => {
+                                return image_ != image;
+                            });
+
+                            // handleFieldUpdate('images', newImages);
+                            newData['images'] = newImages;
+
+                            if (image.id) {
+                                const removeImages = data.removeImages === undefined
+                                    ? []
+                                    : [...data.removeImages];
+
+                                if (!removeImages.includes(image.id)) {
+                                    removeImages.push(image.id);
+                                }
+
+                                // handleFieldUpdate('removeImages', removeImages);
+                                newData['removeImages'] = removeImages;
+                            }
+
+                            setData(newData);
+                        }}
+                    />
                     <hr style={{
                         clear: 'both',
                         opacity: 0,
