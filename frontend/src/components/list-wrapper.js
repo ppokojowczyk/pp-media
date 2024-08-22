@@ -33,6 +33,7 @@ const ListWrapper = ({ mediaType = "" }) => {
     order: defaultFilters.order || 'ASC',
     own: defaultFilters.own || '',
   });
+  const [editIsProcessing, setEditIsProcessing] = useState(false);
 
   repository.filters = function (value) {
     if (typeof this._filters === 'undefined') {
@@ -96,6 +97,8 @@ const ListWrapper = ({ mediaType = "" }) => {
   }
 
   const handleSave = (data) => {
+    setEditIsProcessing(true);
+
     const func = data.id
       ? () => {
         return repository.update(data.id, data);
@@ -122,6 +125,8 @@ const ListWrapper = ({ mediaType = "" }) => {
         refresh();
       }).catch((err) => {
         alert(err.toString());
+      }).finally(() => {
+        setEditIsProcessing(false);
       });
   }
 
@@ -211,6 +216,7 @@ const ListWrapper = ({ mediaType = "" }) => {
               cancel={closeEdit}
               data={edited}
               save={handleSave}
+              isProcessing={editIsProcessing}
             />
           </Modal>
         )}

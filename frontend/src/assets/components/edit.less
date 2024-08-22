@@ -1,4 +1,13 @@
 .edit {
+  &--is-processing {
+    opacity: 0.25;
+    cursor: wait !important;
+
+    * {
+      pointer-events: none !important;
+    }
+  }
+
   .buttons {
     text-align: right;
   }

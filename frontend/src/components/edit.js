@@ -4,7 +4,7 @@ import renderInput from "./render-input";
 import CharsCounter from "./chars-counter";
 import Images from "../contexts/images";
 
-const Edit = ({ fields = [], save = null, cancel = null, data: d = {}, readOnly = false }) => {
+const Edit = ({ fields = [], save = null, cancel = null, data: d = {}, readOnly = false, isProcessing = false }) => {
 
     const [data, setData] = useState(d);
 
@@ -30,7 +30,7 @@ const Edit = ({ fields = [], save = null, cancel = null, data: d = {}, readOnly 
     };
 
     return (
-        <div className="edit">
+        <div className={"edit" + (isProcessing ? ' edit--is-processing' : '')}>
             <form action="#" onSubmit={handleSave}>
                 <fieldset>
                     {

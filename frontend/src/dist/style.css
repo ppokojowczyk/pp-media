@@ -75,6 +75,13 @@ label {
   margin-top: 1em;
   text-align: right;
 }
+.edit--is-processing {
+  opacity: 0.25;
+  cursor: wait !important;
+}
+.edit--is-processing * {
+  pointer-events: none !important;
+}
 .edit .buttons {
   text-align: right;
 }
