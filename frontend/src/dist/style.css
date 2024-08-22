@@ -196,7 +196,7 @@ label {
   top: 5%;
   left: 25%;
   width: 50%;
-  background: black;
+  background: #282c34;
   border: 1px solid grey;
   border-radius: 10px;
   height: calc(100% - 10%);
@@ -209,7 +209,7 @@ label {
   padding: 0.1em 1em;
   position: absolute;
   top: -1.75em;
-  background: black;
+  background: #282c34;
   z-index: 1;
 }
 .modal-body {
