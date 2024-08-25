@@ -8,11 +8,9 @@ import { getMediaStoreUrl } from '../utils/api';
 import { dataSource } from '../utils/data-source';
 import { numberColumn, titleColumn } from '../utils/columns';
 
-const Inventory = ({
+const Inventory = () => {
 
-}) => {
-
-    const [mediaType, setMediaType] = useState('book');
+    const [mediaType, setMediaType] = useState();
     const [repository, setRepository] = useState(null);
     const [refresh_, setRefresh_] = useState(false);
     const [data, setData] = useState([]);
@@ -63,6 +61,19 @@ const Inventory = ({
     useEffect(() => clear(), [mediaType]);
 
     const addToPanel = <>
+        <label>
+            Select Media Type
+            <Choice
+                value={mediaType}
+                data={mediaTypes.map(({ type }) => {
+                    return {
+                        name: type,
+                        value: type,
+                    };
+                })}
+                onChange={(value) => setMediaType(value)}
+            />
+        </label>
         <Button
             text='Clear'
             onClick={clear}
@@ -78,48 +89,33 @@ const Inventory = ({
 
     return (
         <Container className='inventory'>
-            <Container className='inventory-panel'>
-                <Choice
-                    value={mediaType}
-                    data={mediaTypes.map(({ type }) => {
-                        return {
-                            name: type,
-                            value: type,
-                        };
-                    })}
-                    onChange={(value) => setMediaType(value)}
+            <Container className='inventory-list'>
+                <List
+                    repository={{
+                        load: () => Promise.resolve({ data }),
+                    }}
+                    columns={[
+                        numberColumn,
+                        titleColumn,
+                        {
+                            caption: "Options",
+                            alignment: 'center',
+                            allowEditing: false,
+                            content: (column, data) => [
+                                <Button text='OK'
+                                    onClick={() => {
+                                        remove(data);
+                                    }}
+                                />
+                            ],
+                        },
+                    ]}
+                    withAddNew={false}
+                    withRefreshButton={false}
+                    refresh={refresh_}
+                    addToPanel={addToPanel}
                 />
             </Container>
-            {
-                repository &&
-                <Container className='inventory-list'>
-                    <List
-                        repository={{
-                            load: () => Promise.resolve({ data }),
-                        }}
-                        columns={[
-                            numberColumn,
-                            titleColumn,
-                            {
-                                caption: "Options",
-                                alignment: 'center',
-                                allowEditing: false,
-                                content: (column, data) => [
-                                    <Button text='OK'
-                                        onClick={() => {
-                                            remove(data);
-                                        }}
-                                    />
-                                ],
-                            },
-                        ]}
-                        withAddNew={false}
-                        withRefreshButton={false}
-                        refresh={refresh_}
-                        addToPanel={addToPanel}
-                    />
-                </Container>
-            }
         </Container>
     )
 };
