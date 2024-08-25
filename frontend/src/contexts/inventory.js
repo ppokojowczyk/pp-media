@@ -11,13 +11,11 @@ import { numberColumn, titleColumn } from '../utils/columns';
 const Inventory = () => {
 
     const [mediaType, setMediaType] = useState();
-    const [repository, setRepository] = useState(null);
     const [refresh_, setRefresh_] = useState(false);
     const [data, setData] = useState([]);
     const [removed, setRemoved] = useState([]);
 
     const clear = () => {
-        setRepository(null);
         setData([]);
         setRemoved([]);
 
@@ -28,7 +26,6 @@ const Inventory = () => {
             };
             repo.load().then(({ data }) => {
                 setData(data);
-                setRepository(true);
             });
         }
     };
@@ -87,29 +84,33 @@ const Inventory = () => {
         </Container>
     </>;
 
+    const columns = [
+        numberColumn,
+        titleColumn,
+        {
+            caption: "Options",
+            alignment: 'center',
+            allowEditing: false,
+            content: (column, data) => [
+                <Button text='OK'
+                    onClick={() => {
+                        remove(data);
+                    }}
+                />
+            ],
+        },
+    ];
+
+    const repository = {
+        load: () => Promise.resolve({ data }),
+    };
+
     return (
         <Container className='inventory'>
             <Container className='inventory-list'>
                 <List
-                    repository={{
-                        load: () => Promise.resolve({ data }),
-                    }}
-                    columns={[
-                        numberColumn,
-                        titleColumn,
-                        {
-                            caption: "Options",
-                            alignment: 'center',
-                            allowEditing: false,
-                            content: (column, data) => [
-                                <Button text='OK'
-                                    onClick={() => {
-                                        remove(data);
-                                    }}
-                                />
-                            ],
-                        },
-                    ]}
+                    repository={repository}
+                    columns={columns}
                     withAddNew={false}
                     withRefreshButton={false}
                     refresh={refresh_}
