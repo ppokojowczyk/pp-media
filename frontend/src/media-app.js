@@ -13,6 +13,7 @@ import {
 import { makeList } from "./utils/list-factory";
 import Statistics from "./components/statistics";
 import Import from "./contexts/import";
+import Inventory from "./contexts/inventory";
 
 const MediaApp = () => {
   return (
@@ -31,6 +32,7 @@ const MediaApp = () => {
             <Route exact path="/books/:id?" render={() => makeList(BOOK_TYPE)} />
             <Route exact path="/albums/:id?" render={() => makeList(ALBUM_TYPE)} />
             <Route exact path="/statistics" component={Statistics} />
+            <Route exact path="/inventory" component={Inventory} />
             <Route exact path="/import" component={Import} />
           </div>
         </Router>
