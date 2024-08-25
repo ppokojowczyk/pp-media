@@ -35,6 +35,12 @@ const Menu = ({ history }) => {
       className: "button-statistics",
     },
     {
+      title: "Inventory",
+      icon: "inventory",
+      url: "/inventory",
+      className: "button-inventory",
+    },
+    {
       title: "Import",
       icon: "import",
       url: "/import",

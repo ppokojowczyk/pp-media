@@ -316,6 +316,15 @@ label {
 .stat-card:hover {
   background: #373c46;
 }
+.inventory .list-panel .input + .button {
+  margin-left: 5px;
+}
+.inventory .list-panel .inventory-counter {
+  color: white;
+  float: "right";
+  margin-top: 5px;
+  margin-left: 10px;
+}
 .App {
   background-color: #282c34;
   min-height: 100vh;
