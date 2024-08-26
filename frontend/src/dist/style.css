@@ -323,6 +323,13 @@ label {
 .stat-card:hover {
   background: #373c46;
 }
+.inventory .list-panel label {
+  margin-left: 5px;
+}
+.inventory .list-panel .input-choice {
+  width: auto;
+  margin: 0 5px;
+}
 .inventory .list-panel .input + .button {
   margin-left: 5px;
 }
