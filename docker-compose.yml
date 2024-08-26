@@ -36,6 +36,7 @@ services:
             - FRONTEND_PORT=${FRONTEND_PORT}
             - API_PORT=${BACKEND_PORT}
             - REACT_APP_API_URL=${FRONTEND_API_URL}
+            - REACT_APP_PP_IMAGES_HUB_URL=${PP_IMAGES_HUB_URL}
         expose:
             - ${FRONTEND_PORT}
         ports:
