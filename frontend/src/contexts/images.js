@@ -3,7 +3,6 @@ import Image from '../components/image';
 import Upload from '../components/upload';
 
 const Images = ({
-    mediaId,
     images,
     onUploaded,
     onRemove,
