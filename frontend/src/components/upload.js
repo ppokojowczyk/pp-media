@@ -1,6 +1,6 @@
 import React from 'react';
-// import { upload } from '../utils';
 import Button from './button';
+import processFiles from '../utils/process-files';
 
 const Upload = ({
     onUploaded,
@@ -9,29 +9,7 @@ const Upload = ({
     const inputElementId = 'upload';
 
     const processImages = (whenDone) => {
-        const input = document.getElementById(inputElementId);
-        const files = input.files;
-        const outputFiles = [];
-        let done = 0;
-        const callback = (e, file) => {
-            outputFiles.push({
-                name: 'new-upload',
-                data: e.target.result,
-                file,
-            });
-            done++;
-            if (done === files.length) {
-                whenDone(outputFiles);
-            }
-        };
-
-        if (files.length) {
-            for (const file of files) {
-                const reader = new FileReader();
-                reader.onload = (e) => callback(e, file);
-                reader.readAsDataURL(file);
-            }
-        }
+        processFiles(document.getElementById(inputElementId).files, whenDone);
     };
 
     const doUpload = () => processImages(onUploaded);
