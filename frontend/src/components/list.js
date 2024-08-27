@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { numberColumn } from "../utils/columns";
 import Button from "./button";
 import Input from "./input";
+import GalleryItem from "./gallery-item";
+import Container from "./container";
+import Choice from "./choice";
 
 const List = ({
   repository = {},
@@ -13,10 +16,12 @@ const List = ({
   withAddNew = true,
   withRefreshButton = true,
   addToPanel = null,
+  edit,
 }) => {
   const [data, setData] = useState([]);
   const [opacity, setOpacity] = useState(1);
   const [filtered, setFiltered] = useState(false);
+  const [mode, setMode] = useState('');
 
   const doRefresh = () => {
     setOpacity(0.3);
@@ -60,65 +65,95 @@ const List = ({
           text="Refresh"
           onClick={() => doRefresh()} />}
         <Input placeholder="Search..." onChange={applySearchFilter} />
+        <Choice
+          data={[
+            { name: 'Default', value: '' },
+            { name: 'Gallery', value: 'gallery' },
+          ]}
+          noDefault={true}
+          value={mode}
+          onChange={setMode}
+        />
         {addToPanel}
       </div>
-      <table className="list-wrapper">
-        <thead className="list-header">
-          <tr>
-            {columns
-              .filter((column) => {
-                return (
-                  typeof column.visible === "undefined" || column.visible === true
-                );
-              })
-              .map((column) => {
-                return <th className="list-header-cell">{column.caption}</th>;
-              })}
-          </tr>
-        </thead>
-        <tbody className="list-body">
-          {data.length || filtered !== false ?
-            ((filtered !== false) ? filtered : data).map((datum, index) => {
-              return (
-                <tr className="list-body-row">
+      {
+        mode === 'gallery' ?
+          <Container className='gallery'>
+            {data.length || filtered !== false ?
+              ((filtered !== false) ? filtered : data).map((datum, index) => {
+                return (<GalleryItem
+                  onClick={() => {
+                    edit(datum.id);
+                  }}
+                  title={datum.title}
+                  cover={
+                    datum?.images[0] ? `url('http://localhost:8081/image/thumb/${datum?.images[0].id}')` : ''
+                  }
+                />)
+              }) : ''
+            }
+            <hr style={{ clear: 'both', border: 'none' }} />
+          </Container>
+          : (
+            <table className="list-wrapper">
+              <thead className="list-header">
+                <tr>
                   {columns
                     .filter((column) => {
                       return (
-                        typeof column.visible === "undefined" ||
-                        column.visible === true
+                        typeof column.visible === "undefined" || column.visible === true
                       );
                     })
                     .map((column) => {
-                      let content = '';
-
-                      if (typeof column.content === 'function') {
-                        content = column.content(
-                          column,
-                          datum,
-                          datum[column.dataField]
-                        );
-                      } else if (column === numberColumn) {
-                        content = (index + 1);
-                      } else {
-                        content = datum[column.dataField];
-                      }
-
-                      return <td className={
-                        "list-body-cell " + column.className
-                      } style={(() => {
-                        const style = column.style || {}
-                        if (column.alignment) {
-                          style.textAlign = column.alignment;
-                        }
-
-                        return style;
-                      })()}>{content}</td>;
+                      return <th className="list-header-cell">{column.caption}</th>;
                     })}
                 </tr>
-              )
-            }) : ''}
-        </tbody>
-      </table>
+              </thead>
+              <tbody className="list-body">
+                {data.length || filtered !== false ?
+                  ((filtered !== false) ? filtered : data).map((datum, index) => {
+                    return (
+                      <tr className="list-body-row">
+                        {columns
+                          .filter((column) => {
+                            return (
+                              typeof column.visible === "undefined" ||
+                              column.visible === true
+                            );
+                          })
+                          .map((column) => {
+                            let content = '';
+
+                            if (typeof column.content === 'function') {
+                              content = column.content(
+                                column,
+                                datum,
+                                datum[column.dataField]
+                              );
+                            } else if (column === numberColumn) {
+                              content = (index + 1);
+                            } else {
+                              content = datum[column.dataField];
+                            }
+
+                            return <td className={
+                              "list-body-cell " + column.className
+                            } style={(() => {
+                              const style = column.style || {}
+                              if (column.alignment) {
+                                style.textAlign = column.alignment;
+                              }
+
+                              return style;
+                            })()}>{content}</td>;
+                          })}
+                      </tr>
+                    )
+                  }) : ''}
+              </tbody>
+            </table>
+          )
+      }
     </div>
   );
 };

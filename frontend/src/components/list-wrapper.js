@@ -193,6 +193,10 @@ const ListWrapper = ({ mediaType = "" }) => {
               }}
             />
           }
+          mode={'gallery'}
+          edit={(id) => {
+            history.push(`/${mediaType}s/${id}`);
+          }}
         />
         {viewItem && (
           <Modal

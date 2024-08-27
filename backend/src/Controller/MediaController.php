@@ -52,6 +52,10 @@ class MediaController extends AbstractController
          */
         if ($id && isset($data[0])) {
             $this->uploadsService->addImagesToMedia($data[0]);
+        } elseif (count($data)) {
+            foreach ($data as $item) {
+                $this->uploadsService->addImagesToMedia($item);
+            }
         }
 
         return $this->json(['data' => $data, 'totalCount' => count($data)]);
