@@ -10,11 +10,12 @@ const GalleryItem = ({
         className="gallery-item"
         onClick={onClick}
     >
-        <Container className="gallery-item__cover"
-            style={{
-                backgroundImage: cover || 'none',
-            }}
-        >
+        <Container className="gallery-item__cover">
+            {cover && <Container className="cover-image"
+                style={{
+                    backgroundImage: cover,
+                }}
+            />}
             {!cover && <Container className="no-cover">?</Container>}
         </Container>
         <Container className="gallery-item__title">{title}</Container>
