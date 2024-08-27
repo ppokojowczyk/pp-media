@@ -50,8 +50,14 @@ const isArray = (value) => {
     return typeof value !== 'undefined' && value && Array.isArray(value);
 };
 
+const prevent = (event) => {
+    event.preventDefault();
+    return false;
+};
+
 export {
     formatDate,
     confirm,
     isArray,
+    prevent,
 };
