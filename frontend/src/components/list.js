@@ -4,7 +4,6 @@ import Button from "./button";
 import Input from "./input";
 import GalleryItem from "./gallery-item";
 import Container from "./container";
-import Choice from "./choice";
 
 const List = ({
   repository = {},
@@ -17,11 +16,11 @@ const List = ({
   withRefreshButton = true,
   addToPanel = null,
   edit,
+  mode,
 }) => {
   const [data, setData] = useState([]);
   const [opacity, setOpacity] = useState(1);
   const [filtered, setFiltered] = useState(false);
-  const [mode, setMode] = useState('');
 
   const doRefresh = () => {
     setOpacity(0.3);
@@ -65,15 +64,6 @@ const List = ({
           text="Refresh"
           onClick={() => doRefresh()} />}
         <Input placeholder="Search..." onChange={applySearchFilter} />
-        <Choice
-          data={[
-            { name: 'Default', value: '' },
-            { name: 'Gallery', value: 'gallery' },
-          ]}
-          noDefault={true}
-          value={mode}
-          onChange={setMode}
-        />
         {addToPanel}
       </div>
       {

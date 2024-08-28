@@ -13,6 +13,7 @@ import View from "./view";
 import ListFilters from "./list-filters";
 import { getConfigOption, saveConfigOption } from "../utils/config";
 import { uploadRepository } from "../utils/uploads-repository";
+import Choice from "./choice";
 
 const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -34,6 +35,7 @@ const ListWrapper = ({ mediaType = "" }) => {
     own: defaultFilters.own || '',
   });
   const [editIsProcessing, setEditIsProcessing] = useState(false);
+  const [mode, setMode] = useState(getConfigOption('mode', ''));
 
   repository.filters = function (value) {
     if (typeof this._filters === 'undefined') {
@@ -182,7 +184,7 @@ const ListWrapper = ({ mediaType = "" }) => {
           }}
           onImdbClick={onImdbClick}
           addToPanel={
-            <ListFilters
+            [<ListFilters
               mediaType={mediaType}
               filters={filters}
               update={(filters) => {
@@ -191,9 +193,22 @@ const ListWrapper = ({ mediaType = "" }) => {
                 repository.filters(filters);
                 refresh();
               }}
+            />,
+            <Choice
+              data={[
+                { name: 'Default', value: '' },
+                { name: 'Gallery', value: 'gallery' },
+              ]}
+              noDefault={true}
+              value={mode}
+              onChange={(mode) => {
+                setMode(mode);
+                saveConfigOption('mode', mode);
+              }}
             />
+            ]
           }
-          mode={'gallery'}
+          mode={mode}
           edit={(id) => {
             history.push(`/${mediaType}s/${id}`);
           }}
