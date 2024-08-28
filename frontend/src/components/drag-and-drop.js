@@ -2,15 +2,15 @@ import React from 'react';
 import Container from './container';
 import processFiles from '../utils/process-files';
 import { prevent } from '../utils/helpers';
+import { getApiUrl } from '../utils/api';
 
-const fetchRecentImage = (url) => {
-    return fetch(url, {
-        method: 'GET',
-        mode: 'no-cors',
-    }).then(response => {
-        console.log(response.blob());
-        return response ? response.blob() : null;
-    });
+const fetchRemoteImage = (url) => {
+    return fetch(getApiUrl('/image/external'), {
+        method: 'POST',
+        body: JSON.stringify({
+            url,
+        }),
+    }).then(response => response ? response.blob() : null);
 };
 
 const DragAndDrop = ({
@@ -19,7 +19,15 @@ const DragAndDrop = ({
 
     const processFile = (e) => {
         e.preventDefault();
-        e.dataTransfer?.files && processFiles([...e.dataTransfer.files], onUploaded);
+        if (e.dataTransfer?.files.length) {
+            e.dataTransfer?.files && processFiles([...e.dataTransfer.files], onUploaded);
+        } else {
+            const url = e.dataTransfer.getData('text');
+            url && fetchRemoteImage(url)
+                .then((image) => {
+                    image && processFiles([image], onUploaded);
+                });
+        }
     };
 
     return (

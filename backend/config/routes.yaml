@@ -177,3 +177,8 @@ image_thumbnail:
   path: /image/thumb/{id}
   controller: App\Controller\UploadsController::imageThumbnail
   methods: GET
+
+external_remote_image:
+  path: /image/external
+  controller: App\Controller\UploadsController::externalRemoteImage
+  methods: POST

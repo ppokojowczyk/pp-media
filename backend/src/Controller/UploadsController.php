@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Factory;
 use App\Service\UploadsService;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -102,6 +103,44 @@ class UploadsController extends AbstractController
         $response->headers->set('Content-length',  strlen($thumbnail));
         $response->sendHeaders();
         $response->setContent($thumbnail);
+
+        return $response;
+    }
+
+    /**
+     * @param string $url
+     * 
+     * @return Response
+     */
+    public function externalRemoteImage(Request $request): Response
+    {
+        $image = '';
+        $data = json_decode($request->getContent(), true);
+        $response = new Response();
+        $url = $data['url'];
+
+        if (!$url) {
+            throw new Exception('Missing image url.');
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)');
+        $image = curl_exec($ch);
+        curl_close($ch);
+
+        if ($image === FALSE) {
+            throw new Exception('Download failed.');
+        }
+
+        $response->headers->set('Cache-Control', 'private');
+        $response->headers->set('Content-type', 'image/jpeg');
+        $response->headers->set('Content-length',  strlen($image));
+        $response->sendHeaders();
+        $response->setContent($image);
 
         return $response;
     }
