@@ -241,22 +241,20 @@ const ListWrapper = ({ mediaType = "" }) => {
         )}
         {
           imdbVisible && (
-            <>
-              <div className="overlay"></div>
-              <div className="edit-container">
-                <Imdb
-                  genres={genres}
-                  isVisible={imdbVisible}
-                  onCancel={() => {
-                    setImdbVisible(false);
-                  }}
-                  onLoaded={(item) => {
-                    setEdited(item);
-                    setEditVisible(true);
-                  }}
-                />
-              </div>
-            </>
+            <Modal
+              title='IMDb'
+              onClosing={() => setImdbVisible(false)}>
+              <Imdb
+                genres={genres}
+                isVisible={imdbVisible}
+                onCancel={() => setImdbVisible(false)}
+                onLoaded={(item) => {
+                  setImdbVisible(false)
+                  setEdited(item);
+                  setEditVisible(true);
+                }}
+              />
+            </Modal>
           )
         }
       </div>

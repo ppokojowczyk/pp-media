@@ -116,7 +116,7 @@ const Imdb = ({
                     <div>
                         <label
                             for='media-id'>
-                            Imdb Url
+                            IMDb Url
                         </label>
                     </div>
                     <div>

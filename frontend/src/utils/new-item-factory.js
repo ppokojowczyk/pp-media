@@ -19,6 +19,7 @@ const makeNewItem = (type) => {
         [priceColumn.dataField]: 0,
         [remarksColumn.dataField]: '',
         [quantityColumn.dataField]: 0,
+        images: [],
     };
 
     if (type === BOOK_TYPE) {

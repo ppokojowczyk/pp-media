@@ -478,6 +478,9 @@ label {
   border: 1px dashed white;
   color: white;
 }
+.imdb {
+  margin-top: 1em;
+}
 .App {
   background-color: #282c34;
   min-height: 100vh;
