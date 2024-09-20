@@ -3,10 +3,12 @@ import {
     completedColumn,
     coverColumn,
     descriptionColumn,
+    developerColumn,
     favouriteColumn,
     genresColumn,
     languageColumn,
     ownColumn,
+    playColumn,
     priceColumn,
     publisherColumn,
     quantityColumn,
@@ -20,6 +22,7 @@ import {
 } from "./columns";
 import {
     BOOK_TYPE,
+    GAME_TYPE,
 } from "./constants";
 
 const makeNewItem = (type) => {
@@ -46,6 +49,9 @@ const makeNewItem = (type) => {
     if (type === BOOK_TYPE) {
         data[authorColumn.dataField] = '';
         data[coverColumn.dataField] = '';
+    } else if (type === GAME_TYPE) {
+        data[developerColumn.dataField] = '';
+        data[playColumn.dataField] = false;
     }
 
     return data;
