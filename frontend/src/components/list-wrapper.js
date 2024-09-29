@@ -14,6 +14,7 @@ import ListFilters from "./list-filters";
 import { getConfigOption, saveConfigOption } from "../utils/config";
 import { uploadRepository } from "../utils/uploads-repository";
 import Choice from "./choice";
+import { prepareEditableColumns } from "../utils/prepare-editable-columns";
 
 const ListWrapper = ({ mediaType = "" }) => {
   const [columns, setColumns] = useState([]);
@@ -138,11 +139,7 @@ const ListWrapper = ({ mediaType = "" }) => {
     history.push(`/${mediaType}s`);
   }
 
-  const editableColumns = () => {
-    return columns.filter((e) => {
-      return typeof e.allowEditing === 'undefined' || e.allowEditing === true;
-    });
-  }
+  const editableColumns = (item) => prepareEditableColumns(columns, item);
 
   const onImdbClick = () => {
     setImdbVisible(true);
@@ -219,7 +216,7 @@ const ListWrapper = ({ mediaType = "" }) => {
             onClosing={() => setViewItem(null)}
           >
             <View
-              fields={editableColumns()}
+              fields={editableColumns(viewItem)}
               cancel={() => setViewItem(null)}
               data={viewItem}
             />
@@ -231,7 +228,7 @@ const ListWrapper = ({ mediaType = "" }) => {
             onClosing={closeEdit}
           >
             <Edit
-              fields={editableColumns()}
+              fields={editableColumns(edited)}
               cancel={closeEdit}
               data={edited}
               save={handleSave}
