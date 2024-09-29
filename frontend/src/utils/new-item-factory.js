@@ -33,7 +33,7 @@ const makeNewItem = (type) => {
         [releaseDateColumn.dataField]: '',
         [descriptionColumn.dataField]: '',
         [genresColumn.dataField]: [],
-        language: '',
+        [languageColumn.dataField]: '',
         [ratingColumn.dataField]: 0,
         [favouriteColumn.dataField]: false,
         [saveWithoutValidationColumn.dataField]: false,
