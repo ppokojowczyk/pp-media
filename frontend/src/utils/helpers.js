@@ -55,9 +55,12 @@ const prevent = (event) => {
     return false;
 };
 
+const copy = (data) => JSON.parse(JSON.stringify(data));
+
 export {
     formatDate,
     confirm,
     isArray,
     prevent,
+    copy,
 };
