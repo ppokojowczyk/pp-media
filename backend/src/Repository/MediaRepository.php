@@ -62,6 +62,6 @@ class MediaRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(sprintf('SELECT SUM(m.price) FROM %s m WHERE m.own = 1', $this->getEntityName()))
-            ->getSingleScalarResult();
+            ->getSingleScalarResult() ?? 0;
     }
 }
