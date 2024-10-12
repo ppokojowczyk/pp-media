@@ -354,6 +354,10 @@ label {
   font-weight: bold;
   margin-bottom: 1em;
 }
+.images .images-hub,
+.images .upload {
+  display: inline-block;
+}
 .image {
   cursor: pointer;
   width: calc(25% - 6px);
@@ -480,6 +484,20 @@ label {
 }
 .imdb {
   margin-top: 1em;
+}
+.images-hub-list {
+  margin: 2em 0.5em 0.5em;
+}
+.images-hub-image {
+  float: left;
+  margin: 0.25em;
+  height: auto;
+  width: calc(20% - 0.5em);
+}
+.images-hub-image img {
+  width: 100%;
+  object-fit: contain;
+  cursor: pointer;
 }
 .App {
   background-color: #282c34;
