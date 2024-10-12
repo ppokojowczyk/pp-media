@@ -6,6 +6,7 @@ const Button = ({ text = "", className = "", onClick = null, disabled }) => {
       className={["button"].concat(className).join(" ")}
       onClick={onClick}
       disabled={disabled}
+      type="button"
     >
       {text}
     </button>
