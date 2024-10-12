@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Entity\MediaType;
 use App\Factory;
-use App\Repository\MediaRepository;
 
 class Statistics
 {
