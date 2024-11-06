@@ -13,6 +13,10 @@ const fetchRecentImage = (endpoint) => fetch(endpoint + '/recent')
     .then(({ src = null }) => !src ? null : fetch(endpoint + src))
     .then(response => response ? response.blob() : null);
 
+const pingHub = (endpoint) => fetch(`${endpoint}/ping`)
+    .then(response => response.ok)
+    .catch(() => false);
+
 const ImagesHubRecentImage = ({
     hubUrl,
     onUploaded,
@@ -145,8 +149,18 @@ const ImagesHub = ({
     callback,
 }) => {
 
+    const [active, setActive] = useState(false);
+
     if (!hubUrl) {
         throw new Error('No Images Hub URL defined.');
+    }
+
+    useEffect(() => {
+        pingHub(hubUrl).then(setActive);
+    }, []);
+
+    if (!active) {
+        return null;
     }
 
     return <>
