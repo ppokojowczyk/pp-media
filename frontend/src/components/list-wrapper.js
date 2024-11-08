@@ -202,6 +202,25 @@ const ListWrapper = ({ mediaType = "" }) => {
                 setMode(mode);
                 saveConfigOption('mode', mode);
               }}
+            />,
+            /** Special filters. */
+            <Choice
+              data={[
+                { name: 'No image(s)', value: 'no-images' },
+                { name: 'With image(s)', value: 'with-images' },
+                { name: 'No price', value: 'no-price' },
+                { name: 'No language', value: 'no-language' },
+                { name: 'Zero quantity', value: 'zero-quantity' },
+                { name: 'No publisher', value: 'no-publisher' },
+                { name: 'No genre(s)', value: 'no-genres' },
+              ]}
+              noDefault={false}
+              value={''}
+              onChange={(filter) => {
+                setFilters({ ...filters, special: filter });
+                repository.filters(filters);
+                refresh();
+              }}
             />
             ]
           }

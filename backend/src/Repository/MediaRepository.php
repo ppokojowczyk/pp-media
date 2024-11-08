@@ -2,8 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\AlbumGenre;
 use App\Entity\MediaInterface;
+use App\Entity\MediaType;
+use App\Entity\Upload;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method MediaInterface|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,6 +18,39 @@ use Doctrine\ORM\EntityRepository;
 class MediaRepository extends EntityRepository
 {
     const MAX_RESULTS = 1000;
+
+    /**
+     * Apply special filter to query builder.
+     * @param QueryBuilder $builder
+     * @param string $filter
+     *
+     * @return QueryBuilder
+     */
+    private function applySpecialFilter(QueryBuilder $builder, string $filter): QueryBuilder
+    {
+        if ($filter === 'no-price') {
+            $builder->andWhere("m.price = 0 OR m.price IS NULL OR m.price = ''");
+        } else if ($filter === 'no-images' || $filter === 'with-images') {
+            $builder->leftJoin(Upload::class, 'u', 'WITH', 'u.media_id = m.id AND u.media_type = :media_type');
+            $builder->setParameter('media_type', MediaType::typeByMediaClass($this->getEntityName()));
+            $builder->having($filter === 'no-images' ? 'COUNT(u.id) = 0' : 'COUNT(u.id) > 0');
+            $builder->groupBy('m.id');
+        } else if ($filter === 'no-language') {
+            $builder->andWhere("m.language = '' OR m.language IS NULL");
+        } else if ($filter === 'zero-quantity') {
+            $builder->andWhere("m.quantity = 0 OR m.quantity IS NULL");
+        } else if ($filter === 'no-publisher') {
+            $builder->andWhere("m.publisher = '' OR m.publisher IS NULL");
+        } else if ($filter === 'no-genres') {
+            $mediaType = MediaType::typeByMediaClass($this->getEntityName());
+            $genreClass = 'App\\Entity\\' . ucfirst($mediaType) . 'Genre';
+            $builder->leftJoin($genreClass, 'g', 'WITH', "g.{$mediaType} = m.id");
+            $builder->having("COUNT(g.{$mediaType}) = 0");
+            $builder->groupBy('m.id');
+        }
+
+        return $builder;
+    }
 
     /**
      * Returns an array of MediaInterface objects.
@@ -45,6 +82,8 @@ class MediaRepository extends EntityRepository
             $builder->andWhere('m.own = :own');
             $builder->setParameter('own', $own);
         }
+
+        $this->applySpecialFilter($builder, $filters->special());
 
         $query = $builder->getQuery();
 

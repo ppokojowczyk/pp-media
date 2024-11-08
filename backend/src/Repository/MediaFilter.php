@@ -12,6 +12,8 @@ class MediaFilter
 
     private const OWN_FILTER = 'own';
 
+    private const SPECIAL_FILTER = 'special';
+
     /**
      * @var array $filters
      */
@@ -27,6 +29,7 @@ class MediaFilter
             static::SORT_FILTER,
             static::ORDER_FILTER,
             static::OWN_FILTER,
+            static::SPECIAL_FILTER,
         ];
     }
 
@@ -82,6 +85,15 @@ class MediaFilter
     public function own(): string
     {
         return $this->filters[static::OWN_FILTER];
+    }
+
+    /**
+     * Return value for `special` filter.
+     * @return string
+     */
+    public function special(): string
+    {
+        return $this->filters[static::SPECIAL_FILTER];
     }
 
     /**
