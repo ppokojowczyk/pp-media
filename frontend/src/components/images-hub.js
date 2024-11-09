@@ -92,7 +92,7 @@ const ImagesHubList = ({
     };
 
     useEffect(() => {
-        images === false && fetchImages();
+        images === false && imagesModalVisible && fetchImages();
     }, [showImagesList]);
 
     if (error) {
