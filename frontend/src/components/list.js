@@ -21,6 +21,7 @@ const List = ({
   const [data, setData] = useState([]);
   const [opacity, setOpacity] = useState(1);
   const [filtered, setFiltered] = useState(false);
+  const [search, setSearch] = useState('');
 
   const doRefresh = () => {
     setOpacity(0.3);
@@ -29,6 +30,7 @@ const List = ({
       .then(({ data }) => {
         setData(data);
         setOpacity(1);
+        applySearchFilter(data, search);
       });
   }
 
@@ -45,9 +47,14 @@ const List = ({
       || (item.author && item.author.toLowerCase().indexOf(search) !== -1);
   };
 
-  const applySearchFilter = (e) => {
-    const value = e.target.value;
-    setFiltered(value ? data.filter((item) => itemAppliesToSearchFilter(item, value)) : false);
+  const applySearchFilter = (data, search) => setFiltered(search
+    ? data.filter((item) => itemAppliesToSearchFilter(item, search))
+    : false
+  );
+
+  const updateSearch = (e) => {
+    setSearch(e.target.value);
+    applySearchFilter(data, e.target.value);
   };
 
   return (
@@ -63,7 +70,7 @@ const List = ({
         {withRefreshButton && <Button
           text="Refresh"
           onClick={() => doRefresh()} />}
-        <Input placeholder="Search..." onChange={applySearchFilter} />
+        <Input placeholder="Search..." onChange={updateSearch} />
         {addToPanel}
       </div>
       {
