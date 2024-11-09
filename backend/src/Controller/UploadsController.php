@@ -47,12 +47,7 @@ class UploadsController extends AbstractController
         if (count($uploads)) {
             foreach ($uploads as $upload) {
                 if ($upload) {
-                    $this->uploadsService->saveUpload(
-                        $upload,
-                        $mediaType,
-                        $id,
-                        $this->getDoctrine()->getManager()
-                    );
+                    $this->uploadsService->saveUpload($upload, $mediaType, $id);
                 }
             }
         }

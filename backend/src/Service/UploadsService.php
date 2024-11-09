@@ -56,8 +56,7 @@ class UploadsService
     public function saveUpload(
         UploadedFile $file,
         string $mediaType,
-        int $mediaId,
-        EntityManager $manager
+        int $mediaId
     ): Upload {
 
         if (empty($mediaId)) {
