@@ -105,6 +105,17 @@ const ImagesHubList = ({
                 <Modal
                     title='Images Hub'
                 >
+                    <Button
+                        text="Refresh"
+                        onClick={() => fetchImages()}
+                    />
+                    <Button
+                        text="Cancel"
+                        onClick={() => {
+                            setImagesModalVisible(false);
+                        }}
+                    />
+                    <hr style={{ clear: 'both' }} />
                     <div className="images-hub-list">
                         {images && images.map(image => {
                             return <div className="images-hub-image">
@@ -127,13 +138,6 @@ const ImagesHubList = ({
                             </div>
                         })}
                     </div>
-                    <hr style={{ clear: 'both' }} />
-                    <Button
-                        text="Cancel"
-                        onClick={() => {
-                            setImagesModalVisible(false);
-                        }}
-                    />
                 </Modal>
             }
             <Button
