@@ -47,6 +47,10 @@ class MediaRepository extends EntityRepository
             $builder->leftJoin($genreClass, 'g', 'WITH', "g.{$mediaType} = m.id");
             $builder->having("COUNT(g.{$mediaType}) = 0");
             $builder->groupBy('m.id');
+        } else if ($filter === 'completed') {
+            $builder->andWhere("m.completed = 1");
+        } else if ($filter === 'not-completed') {
+            $builder->andWhere("m.completed != 1");
         }
 
         return $builder;

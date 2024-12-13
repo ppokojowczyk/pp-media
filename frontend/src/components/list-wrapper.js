@@ -213,6 +213,8 @@ const ListWrapper = ({ mediaType = "" }) => {
                 { name: 'Zero quantity', value: 'zero-quantity' },
                 { name: 'No publisher', value: 'no-publisher' },
                 { name: 'No genre(s)', value: 'no-genres' },
+                { name: 'Completed', value: 'completed' },
+                { name: 'Not Completed', value: 'not-completed' },
               ]}
               noDefault={false}
               value={''}
