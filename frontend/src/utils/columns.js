@@ -21,13 +21,13 @@ const numberColumn = {
   allowEditing: false,
   cellTemplate: (c, e) => {
     c.append(
-      e.component.pageIndex() * e.component.pageSize() + (e.rowIndex + 1)
+      e.component.pageIndex() * e.component.pageSize() + (e.rowIndex + 1),
     );
   },
   formItem: {
     visible: false,
   },
-  alignment: 'center',
+  alignment: "center",
 };
 
 const titleColumn = {
@@ -45,10 +45,10 @@ const releaseDateColumn = {
   dataType: "date",
   format: "yyyy-MM-dd",
   width: 50,
-  alignment: 'center',
+  alignment: "center",
   content: (column, data, value) => {
     return formatDate(value);
-  }
+  },
 };
 
 const descriptionColumn = {
@@ -104,9 +104,9 @@ const favouriteColumn = {
   width: 20,
   cssClass: "dx-checkbox--favourite",
   content: (column, data, value) => {
-    return <Check value={value === true} />
+    return <Check value={value === true} />;
   },
-  alignment: 'center',
+  alignment: "center",
 };
 
 const saveWithoutValidationColumn = ({ change }) => {
@@ -118,12 +118,17 @@ const saveWithoutValidationColumn = ({ change }) => {
     width: 20,
     calculateCellValue: () => false,
     content: (column, data, value) => {
-      return <Check value={value === true} onChange={(v) => {
-        change && change(data.id, v);
-      }} />
+      return (
+        <Check
+          value={value === true}
+          onChange={(v) => {
+            change && change(data.id, v);
+          }}
+        />
+      );
     },
-    alignment: 'center',
-  }
+    alignment: "center",
+  };
 };
 
 const ownColumn = {
@@ -132,10 +137,10 @@ const ownColumn = {
   dataType: "boolean",
   width: 20,
   content: (column, data, value) => {
-    return <Check value={value === true} />
+    return <Check value={value === true} />;
   },
-  alignment: 'center',
-}
+  alignment: "center",
+};
 
 const authorColumn = {
   caption: "Author",
@@ -152,9 +157,9 @@ const playColumn = {
   width: 20,
   cssClass: "dx-checkbox--to-watch",
   content: (column, data, value) => {
-    return <Check value={value === true} />
+    return <Check value={value === true} />;
   },
-  alignment: 'center',
+  alignment: "center",
 };
 
 const completedColumn = {
@@ -164,9 +169,9 @@ const completedColumn = {
   width: 20,
   cssClass: "dx-checkbox--completed",
   content: (column, data, value) => {
-    return <Check value={value === true} />
+    return <Check value={value === true} />;
   },
-  alignment: 'center',
+  alignment: "center",
 };
 
 const watchColumn = {
@@ -176,18 +181,18 @@ const watchColumn = {
   width: 20,
   cssClass: "dx-checkbox--to-watch",
   content: (column, data, value) => {
-    return <Check value={value === true} />
+    return <Check value={value === true} />;
   },
-  alignment: 'center',
+  alignment: "center",
 };
 
 const priceColumn = {
   caption: "Price",
   dataField: "price",
-  dataType: "number",
+  dataType: "money",
   width: 50,
   visible: false,
-}
+};
 
 const remarksColumn = {
   caption: "Remarks",
@@ -204,10 +209,10 @@ const languageColumn = (languages) => {
     visible: true,
     fieldType: "choice",
     data: languages,
-    alignment: 'center',
+    alignment: "center",
     width: 50,
     content: (c, e, v) => {
-      let text = v || '';
+      let text = v || "";
 
       if (v !== undefined && v !== null && v) {
         languages.forEach((_lang) => {
@@ -244,12 +249,12 @@ const seriesColumn = {
   visible: false,
   width: 50,
   maxLength: 255,
-}
+};
 
 const optionsColumn = (handleEdit, handleDelete, handleView = null) => {
   return {
     caption: "Options",
-    alignment: 'center',
+    alignment: "center",
     allowEditing: false,
     content: (column, data) => [
       handleView && <Link onClick={() => handleView(data.id)}>View</Link>,
@@ -279,16 +284,14 @@ const importActionType = {
   caption: "Action",
   visible: true,
   content: (column, data) => {
-    return data.existingId ? `Update (${data.existingId})` : 'New';
+    return data.existingId ? `Update (${data.existingId})` : "New";
   },
   width: 50,
-  alignment: 'center',
+  alignment: "center",
   allowEditing: false,
 };
 
-const saveColumn = ({
-  change,
-}) => {
+const saveColumn = ({ change }) => {
   return {
     caption: "Save",
     dataField: "save",
@@ -297,12 +300,17 @@ const saveColumn = ({
     dataType: "boolean",
     cssClass: "dx-checkbox--to-watch",
     content: (column, data, value) => {
-      return <Check value={value === true} onChange={(v) => {
-        change(data.id, v);
-      }} />
+      return (
+        <Check
+          value={value === true}
+          onChange={(v) => {
+            change(data.id, v);
+          }}
+        />
+      );
     },
-    alignment: 'center',
-  }
+    alignment: "center",
+  };
 };
 
 export {
