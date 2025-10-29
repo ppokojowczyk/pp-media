@@ -4,6 +4,7 @@ import Button from "./button";
 import Input from "./input";
 import GalleryItem from "./gallery-item";
 import Container from "./container";
+import { getApiUrl } from '../utils/api.js';
 
 const List = ({
   repository = {},
@@ -84,7 +85,7 @@ const List = ({
                   }}
                   title={datum.title}
                   cover={
-                    datum?.images[0] ? `url('http://localhost:8081/image/thumb/${datum?.images[0].id}')` : ''
+                    datum?.images[0] ? `url('${getApiUrl(`/image/thumb/${datum?.images[0].id}`)}')` : ''
                   }
                 />)
               }) : ''
