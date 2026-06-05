@@ -48,7 +48,7 @@ class Statistics
 
         $data[] = [
             "name" => "Owned Total Cost",
-            "value" => $total,
+            "value" => round($total, 2),
         ];
 
         return $data;

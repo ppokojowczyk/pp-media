@@ -103,8 +103,8 @@ class MediaRepository extends EntityRepository
 
     public function ownedTotalCost()
     {
-        return $this->getEntityManager()
+        return round($this->getEntityManager()
             ->createQuery(sprintf('SELECT SUM(m.price) FROM %s m WHERE m.own = 1', $this->getEntityName()))
-            ->getSingleScalarResult() ?? 0;
+            ->getSingleScalarResult(), 2) ?? 0;
     }
 }
